@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 11:38:15 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 14:58:44 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/02 13:58:45 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/23 16:17:37 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-int	ft_strchr_(const char *s, int c)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	if (!s)
-		return (-1);
+		return (0);
 	i = 0;
 	while (s[i])
-	{
-		if (s[i] == (unsigned char)c)
-			return (i);
-		i ++;
-	}
-	return (-1);
+		i++;
+	return (i);
 }

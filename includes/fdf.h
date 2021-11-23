@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 15:01:20 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:35:22 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,18 @@
 /**
  * Structures
  **/
-typedef struct s_position
+typedef struct s_point
 {
 	int	x;
 	int	y;
 	int	z;
 
-}	t_position;
-
-typedef struct s_point
-{
-	int			value;
-	t_position	position;
 }	t_point;
 
 /**
  * Parsing
  **/
-t_point	*ft_load_map(char	*filename);
+t_point	**ft_load_map(char	*filename);
 
 /**
  * Graphics

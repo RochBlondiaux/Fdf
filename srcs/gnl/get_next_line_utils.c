@@ -1,45 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 18:00:06 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/17 14:44:03 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/15 11:38:15 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/23 16:17:14 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-char ft_ze(unsigned int a, char b)
+int	ft_strchr_(const char *s, int c)
 {
-	(void) a;
-	return (b - 32);
-}
+	size_t	i;
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
-{
-	char			*str;
-	unsigned int	i;
-
+	if (!s)
+		return (-1);
 	i = 0;
-	if (!s || !f)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!str)
-		return (NULL);
 	while (s[i])
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		if (s[i] == (unsigned char)c)
+			return (i);
+		i ++;
 	}
-	str[i] = '\0';
-	return (str);
-}
-
-int main(void)
-{
-	char *a = ft_strmapi("salut", ft_ze);
-	printf("%s\n", a);
+	return (-1);
 }
