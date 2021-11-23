@@ -6,13 +6,15 @@
 #    By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 17:55:37 by rblondia          #+#    #+#              #
-#    Updated: 2021/11/23 14:13:52 by rblondia         ###   ########.fr        #
+#    Updated: 2021/11/23 14:59:43 by rblondia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 SRCS = srcs/main.c \
-	srcs/parsing/parser.c
+	srcs/parsing/parser.c \
+	includes/gnl/get_next_line_utils.c \
+	includes/gnl/get_next_line.c
 
 OBJS = ${SRCS:.c=.o}
 
