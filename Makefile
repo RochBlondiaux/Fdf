@@ -28,8 +28,10 @@ CPPFLAGS = -I./includes/
 # Name
 SRC_NAME =	main.c			 \
 			parsing/parser.c \
+			parsing/parsing_checks.c \
+			utils/fdf_utils.c \
 			gnl/get_next_line.c \
-			gnl/get_next_line_utils.c
+			gnl/get_next_line_utils.c 
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

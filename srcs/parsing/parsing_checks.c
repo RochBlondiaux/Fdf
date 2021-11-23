@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 13:32:35 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 18:17:30 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/23 17:51:08 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/23 18:15:55 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../../includes/fdf.h"
 
-int	main(int argc, char **argv)
+void	ft_check_point(t_point *a)
 {
-	if (argc != 2)
+	if (!a || (a->y != 0 && a->y != 10))
 	{
-		perror(strerror(22));
+		perror("Invalid map!");
 		exit(1);
 	}
-	t_point **a = ft_load_map(argv[1]);
-	int b = 0;
-	while (a[b])
-	{
-		printf("Y: %d\n", a[b]->y);
-		free(a[b]);
-		b++;
-	}
-	free(a);
-	printf("POINTS: %d\n", b);	
-	return (0);
 }

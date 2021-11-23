@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 17:37:31 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/23 18:20:51 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_point
  * Parsing
  **/
 t_point	**ft_load_map(char	*filename);
+void	ft_check_point(t_point *a);
 
 /**
  * Graphics
@@ -50,5 +51,8 @@ t_point	**ft_load_map(char	*filename);
 /**
  * Utils
  **/
+t_point	*ft_create_point(int x, char *y, int z);
+size_t	ft_points_size(t_point **a);
+size_t	ft_doublelenght(char **a);
 
 #endif

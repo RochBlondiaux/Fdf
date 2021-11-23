@@ -6,23 +6,11 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:36:01 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 17:05:18 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/23 18:19:42 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
-
-size_t	ft_points_size(t_point **a)
-{
-	size_t	size;
-
-	if (!a)
-		return (0);
-	size = 0;
-	while (a[size])
-		size++;
-	return (size);
-}
 
 t_point	**ft_join_points(t_point **a, t_point **b)
 {
@@ -50,36 +38,27 @@ t_point	**ft_join_points(t_point **a, t_point **b)
 	}
 	c[i + l] = 0;
 	free(a);
-	free(b);
 	return (c);
 }
 
 t_point	**ft_parse_line(char *line, int z)
 {
 	t_point	**points;
-	t_point	*tmp;
 	char	**s;
 	int		i;
-	int		l;
+	t_point	*tmp;
 
 	if (!line)
 		return (NULL);
 	s = ft_split(line, ' ');
-	l = 0;
-	while (s[l])
-		l++;
 	i = 0;
-	points = malloc(sizeof(t_point *) * l);
+	points = malloc(sizeof(t_point *) * ft_doublelenght(s));
 	if (!points)
 		return (NULL);
 	while (s[i])
 	{
-		tmp = malloc(sizeof(t_point *));
-		if (!tmp)
-			return (NULL);
-		tmp->x = i;
-		tmp->y = ft_atoi(s[i]);
-		tmp->z = z;
+		tmp = ft_create_point(i, s[i], z);
+		ft_check_point(tmp);
 		points[i] = tmp;
 		free(s[i]);
 		i++;
@@ -108,6 +87,7 @@ t_point	**ft_parse_file(int fd)
 		if (!c)
 			break ;
 		points = ft_join_points(points, c);
+		free(c);
 		z++;
 	}
 	close(fd);
@@ -116,7 +96,8 @@ t_point	**ft_parse_file(int fd)
 
 t_point	**ft_load_map(char	*filename)
 {
-	int	fd;
+	int		fd;
+	t_point	**points;
 
 	if (!filename)
 	{
@@ -129,5 +110,11 @@ t_point	**ft_load_map(char	*filename)
 		perror(strerror(9));
 		exit(1);
 	}
-	return (ft_parse_file(fd));
+	points = ft_parse_file(fd);
+	if (!points || ft_points_size(points) == 0)
+	{
+		perror("Empty file!");
+		exit(1);
+	}
+	return (points);
 }
