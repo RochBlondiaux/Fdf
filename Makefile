@@ -1,8 +1,24 @@
-#Colors
-GREEN = \033[3;32m
+# COLORS
+NOC         = \033[0m
+BOLD        = \033[1m
+UNDERLINE   = \033[4m
+BLACK       = \033[1;30m
+RED         = \033[1;31m
+GREEN       = \033[1;32m
+YELLOW      = \033[1;33m
+BLUE        = \033[1;34m
+VIOLET      = \033[1;35m
+CYAN        = \033[1;36m
+WHITE       = \033[1;37m
+
+# SYMBOLS
+INFO = $(WHITE)[$(BLUE)ℹ️ $(WHITE)] 
+SUCCESS = $(WHITE)[$(GREEN)✅$(WHITE)] $(GREEN)
+WARNING = $(WHITE)[$(YELLOW)⚠️$(WHITE)] $(YELLOW)
+ERROR = $(WHITE)[$(RED)❌$(WHITE)] $(RED)
 
 # Binary
-NAME = fdf
+NAME=fdf
 
 # Path
 SRC_PATH = ./srcs/
@@ -34,10 +50,12 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo "$(INFO)Building libft library..."
 	@make -C./srcs/libft/
-	@echo "\033[34mCreation of $(NAME) ...\033[0m"
+	@echo "$(SUCCESS)libft library has been built successfully!"
+	@echo "$(INFO)Building $(NAME) executable..."
 	@$(CC) $(LDFLAGS) $(LFT) $(OBJ) -o $@ $(MLX)
-	@echo "\033[32m$(NAME) created\n\033[0m"
+	@echo "$(SUCCESS)$(NAME) executable has been built successfully!"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -45,16 +63,18 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 clean:
 	@make clean -C ./srcs/libft/
-	@echo "\033[33mRemoval of .o files of $(NAME) ...\033[0m"
+	@echo "$(INFO)Supressing $(NAME) .o files..."
 	@rm -f $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "\033[31mFiles .o deleted\n\033[0m"
+	@echo "$(SUCCESS) $(NAME) .o files deleted successfully!"
 
 fclean: clean
+	@echo "$(INFO)Supressing libft files..."
 	@make fclean -C ./srcs/libft/
-	@echo "\033[33mRemoval of $(NAME)...\033[0m"
+	@echo "$(SUCCESS)libft files deleted successfully!"
+	@echo "$(INFO)Supressing $(NAME) files"
 	@rm -f $(NAME)
-	@echo "\033[31mBinary $(NAME) deleted\n\033[0m"
+	@echo "$(SUCCESS)$(NAME) files deleted successfully!"
 
 re: fclean all
 
