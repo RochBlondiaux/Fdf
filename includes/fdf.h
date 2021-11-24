@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 18:20:51 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/24 14:10:00 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /**
  * Includes
  **/
-# include "../srcs/minilibx/mlx.h"
+# include "../srcs/mlx/mlx.h"
 # include "../srcs/libft/libft.h"
 # include "../srcs/gnl/get_next_line.h"
 # include <unistd.h>

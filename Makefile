@@ -41,48 +41,55 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
 # Flags
-LDFLAGS = -L./srcs/libft/
-LFT = -lft
+FT		= ./srcs/libft/
+FT_LIB	= $(addprefix $(FT),libft.a)
+FT_INC	= -I ./srcs/libft
+FT_LNK	= -L ./srcs/libft -l ft
+
+
 CC = gcc $(CFLAGS)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Imlx 
 
-#MLX = -lmlx -framework OpenGL -framework AppKit
+MLX		= ./srcs/mlx/
+MLX_LIB	= $(addprefix $(MLX),libmlx.a)
+MLX_INC	= -I ./srcs/mlx
+MLX_LNK	= -L ./srcs/mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKit
+all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
 
-# Rules
-all: $(NAME)
+obj:
+	@echo "$(INFO)Creating objects folder..."
+	@mkdir -p $(OBJ_PATH)
+	@echo "$(SUCCESS)Objects folder created successfully"
+
+$(OBJDIR)%.o:$(SRCDIR)%.c
+	@$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+
+$(FT_LIB):
+	@echo "$(INFO)Building libft library..."
+	@make -C $(FT)
+	@echo "$(SUCCESS)Libft library built successfully!"
+
+$(MLX_LIB):
+	@echo "$(INFO)Building minilibx library..."
+	@make -C $(MLX)
+	@echo "$(SUCCESS)Minilibx library built successfully!"
 
 $(NAME): $(OBJ)
-	@echo "$(INFO)Building libft library..."
-	@make -C./srcs/libft/
-	@echo "$(SUCCESS)libft library has been built successfully!"
-	@echo "$(INFO)Building $(NAME) executable..."
-	@$(CC) $(LDFLAGS) $(LFT) $(OBJ) -o $@ $(MLX)
-	@echo "$(SUCCESS)$(NAME) executable has been built successfully!"
-
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CPPFLAGS) -o $@ -c $<
+	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
 clean:
-	@make clean -C ./srcs/libft/
-	@echo "$(INFO)Supressing $(NAME) .o files..."
-	@rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "$(SUCCESS) $(NAME) .o files deleted successfully!"
+	@echo "$(INFO)Deleting .o files..."
+	@rm -rf $(OBJDIR)
+	@echo "$(SUCCESS).o files deleted successfully!"
+	@echo "$(INFO)Deleting libft files..."
+	@make -C $(FT) clean
+	@echo "$(SUCCESS)Libft files deleted successfully!"
+	@echo "$(INFO)Deleting minilibx files..."
+	@make -C $(MLX) clean
+	@echo "$(SUCCESS)Minilibx files deleted successfully!"
 
 fclean: clean
-	@echo "$(INFO)Supressing libft files..."
-	@make fclean -C ./srcs/libft/
-	@echo "$(SUCCESS)libft files deleted successfully!"
-	@echo "$(INFO)Supressing $(NAME) files"
-	@rm -f $(NAME)
-	@echo "$(SUCCESS)$(NAME) files deleted successfully!"
+	@rm -rf $(NAME)
+	@make -C $(FT) fclean
 
 re: fclean all
-
-norme:
-	@printf "${GREEN}"	
-	@norminette $(SRC)
-	@norminette $(INC_PATH)*.h
-
-.PHONY: all, clean, fclean, re
