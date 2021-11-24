@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/24 14:10:00 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/24 16:56:32 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ typedef struct s_point
 	int	z;
 
 }	t_point;
+
+typedef struct s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
+/**
+ * Hooks
+ **/
+int		ft_exit_hook(int keycode, t_vars *vars);
 
 /**
  * Parsing

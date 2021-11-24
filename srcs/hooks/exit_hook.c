@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   exit_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 18:27:52 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/24 17:05:26 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/24 16:54:03 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/24 17:05:39 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/fdf.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	ft_exit_hook(int keycode, t_vars *vars)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	(void) vars;
+	if (keycode == 53)
+		exit(0);
+	return (0);
 }
