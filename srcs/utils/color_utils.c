@@ -20,23 +20,3 @@ int	rgb_to_int(double r, double g, double b)
 	color |= (int)(r * 255) << 16;
 	return (color);
 }
-
-int	ft_get_t(int trgb)
-{
-	return (trgb & (0xFF << 24));
-}
-
-int	ft_get_r(int trgb)
-{
-	return (trgb & (0xFF << 16));
-}
-
-int	ft_get_g(int trgb)
-{
-	return (trgb & (0xFF << 8));
-}
-
-int	ft_get_b(int trgb)
-{
-	return (trgb & 0xFF);
-}
