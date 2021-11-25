@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:36:01 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/23 18:19:42 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/25 15:17:04 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,19 @@ t_point	**ft_load_map(char	*filename)
 	if (!filename)
 	{
 		perror(strerror(2));
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
 		perror(strerror(9));
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	points = ft_parse_file(fd);
 	if (!points || ft_points_size(points) == 0)
 	{
 		perror("Empty file!");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	return (points);
 }

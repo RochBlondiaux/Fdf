@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_hook.c                                        :+:      :+:    :+:   */
+/*   ft_render_pixel.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 16:54:03 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 15:19:48 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/25 15:44:17 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/25 15:45:25 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-int	ft_exit_hook(int keycode, t_vars *vars)
+void	ft_render_pixel(t_img *img, int x, int y, int color)
 {
-	if (keycode == KEY_ESC)
+	char	*pixel;
+	int		i;
+
+	i = img->bpp - 8;
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	while (i >= 0)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		vars->win = NULL;
-		exit(EXIT_SUCCESS);
+		if (img->endian != 0)
+			*pixel++ = (color >> i) & 0xFF;
+		else
+			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+		i -= 8;
 	}
-	return (0);
 }

@@ -32,7 +32,10 @@ SRC_NAME =	main.c			 \
 			utils/fdf_utils.c \
 			gnl/get_next_line.c \
 			gnl/get_next_line_utils.c \
-			hooks/exit_hook.c
+			hooks/exit_hook.c \
+			graphics/ft_render_line.c \
+			utils/color_utils.c \
+			graphics/ft_render_pixel.c
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
