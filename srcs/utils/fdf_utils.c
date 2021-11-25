@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 17:55:08 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 14:29:01 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/25 16:47:27 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,11 @@ size_t	ft_doublelenght(char **a)
 	return (length);
 }
 
-t_position	*ft_create_position(int x, int z)
+t_position	ft_create_position(int x, int z)
 {
-	t_position	*position;
+	t_position	position;
 
-	position = malloc(sizeof(t_position));
-	if (!position)
-		return (NULL);
-	position->x = x;
-	position->z = z;
+	position.x = x;
+	position.z = z;
 	return (position);
 }

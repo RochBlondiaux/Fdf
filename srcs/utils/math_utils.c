@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_checks.c                                   :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 17:51:08 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 17:47:57 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/25 16:21:55 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/25 18:26:25 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	ft_check_point(t_point *a)
+t_position	ft_get_delta(t_position f, t_position s)
 {
-	if (!a || (a->y < 0))
-	{
-		perror("Invalid map!");
-		exit(EXIT_FAILURE);
-	}
+	t_position	d;
+
+	d.x = abs(s.x - f.x);
+	d.z = -abs(s.z - f.z);
+	return (d);
+}
+
+t_position	ft_get_sign(t_position f, t_position s)
+{
+	t_position	sign;
+
+	if (f.x < s.x)
+		sign.x = 1;
+	else
+		sign.x = -1;
+	if (f.z < s.z)
+		sign.z = 1;
+	else
+		sign.z = -1;
+	return (sign);
 }

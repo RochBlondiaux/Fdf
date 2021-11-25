@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 15:45:15 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/25 16:30:02 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void		ft_check_point(t_point *a);
  * Graphics
  **/
 void		ft_render_pixel(t_img *img, int x, int y, int color);
-void		ft_render_line(t_vars *vars, t_position *p1,
-				t_position *p2, int color);
+void		ft_render_line(t_vars *vars, t_position p1,
+				t_position p2, int color);
+void		ft_render_rectangle(t_vars *vars, t_position p1, t_position p2,
+				int color);
 
 /**
  * Utils
@@ -92,7 +94,9 @@ void		ft_render_line(t_vars *vars, t_position *p1,
 t_point		*ft_create_point(int x, char *y, int z);
 size_t		ft_points_size(t_point **a);
 size_t		ft_doublelenght(char **a);
-t_position	*ft_create_position(int x, int z);
+t_position	ft_create_position(int x, int z);
 int			rgb_to_int(double r, double g, double b);
+t_position	ft_get_delta(t_position f, t_position s);
+t_position	ft_get_sign(t_position f, t_position s);
 
 #endif

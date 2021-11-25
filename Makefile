@@ -35,7 +35,9 @@ SRC_NAME =	main.c			 \
 			hooks/exit_hook.c \
 			graphics/ft_render_line.c \
 			utils/color_utils.c \
-			graphics/ft_render_pixel.c
+			graphics/ft_render_pixel.c \
+			utils/math_utils.c \
+			graphics/ft_render_rectangle.c
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
