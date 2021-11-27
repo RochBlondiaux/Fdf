@@ -6,19 +6,18 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:17:26 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 13:17:56 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:06:03 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	rgb(double r, double g, double b)
+int	rgb(int r, int g, int b)
 {
-	int	color;
+	return (convert_rgba(255, r, g, b));
+}
 
-	color = 0;
-	color |= (int)(b * 255);
-	color |= (int)(g * 255) << 8;
-	color |= (int)(r * 255) << 16;
-	return (color);
+int	convert_rgba(int a, int r, int g, int b)
+{
+	return ((255 - a) << 24 | r << 16 | g << 8 | b);
 }

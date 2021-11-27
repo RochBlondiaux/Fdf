@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:32:50 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:47:31 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:07:47 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	render(t_vars *vars)
 {
-	(void) vars;
+	draw_rectangle(vars, vector2f(150, 150), vector2f(450, 450),
+		rgb(126, 214, 223));
+	mlx_put_image_to_window(vars->mlx, vars->win,
+		vars->img.mlx_img, 0, 0);
 	return (0);
 }
 

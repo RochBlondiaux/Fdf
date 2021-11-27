@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:47:06 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:06:18 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ t_v3f	normalize_v3f(t_v3f v);
  **/
 t_v2f	ft_get_delta(t_v2f f, t_v2f s);
 t_v2f	ft_get_sign(t_v2f f, t_v2f s);
-int		rgb(double r, double g, double b);
+int		convert_rgba(int a, int r, int g, int b);
+int		rgb(int r, int g, int b);
 size_t	v3f_lenght(t_v3f **a);
 size_t	double_lenght(char **a);
 t_v3f	*allocate_v3f(int x, int y, char *z_raw);
