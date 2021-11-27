@@ -28,6 +28,11 @@ INCDIR = includes
 # Name
 SRC_NAME =	main.c			 \
 			parsing/parser.c \
+			graphics/init_graphics.c \
+			graphics/draw_pixel.c \
+			graphics/draw_line.c \
+			graphics/draw_rectangle.c \
+			hooks/keys_hook.c \
 			../gnl/get_next_line.c \
 			../gnl/get_next_line_utils.c \
 			utils/v2f_utils.c \

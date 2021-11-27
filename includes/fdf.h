@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:08:50 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:47:06 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_vars {
 /**
  * Hooks
  **/
+int		keys_hook(int keycode, t_vars *vars);
 
 /**
  * Parsing
@@ -88,6 +89,11 @@ t_v3f	**parse_line(char *line, int y);
 /**
  * Graphics
  **/
+void	init_graphics(t_vars *vars);
+void	draw_rectangle(t_vars *vars, t_v2f p1, t_v2f p2,
+			int color);
+void	draw_pixel(t_img *img, t_v2f v, int color);
+void	draw_line(t_vars *vars, t_v2f f, t_v2f s, int color);
 
 /**
  * 2D Vector

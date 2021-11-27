@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_render_pixel.c                                  :+:      :+:    :+:   */
+/*   draw_pixel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 15:44:17 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 15:45:25 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:40:38 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	ft_render_pixel(t_img *img, int x, int y, int color)
+void	draw_pixel(t_img *img, t_v2f v, int color)
 {
 	char	*pixel;
 	int		i;
 
 	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	pixel = img->addr + (v.y * img->line_len + v.x * (img->bpp / 8));
 	while (i >= 0)
 	{
 		if (img->endian != 0)

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_render_line.c                                   :+:      :+:    :+:   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:08:42 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 13:15:09 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:40:54 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-void	ft_render_line(t_vars *vars, t_v2f f, t_v2f s, int color)
+void	draw_line(t_vars *vars, t_v2f f, t_v2f s, int color)
 {
 	t_v2f	delta;
 	t_v2f	sign;
@@ -25,7 +25,7 @@ void	ft_render_line(t_vars *vars, t_v2f f, t_v2f s, int color)
 	current = f;
 	while (current.x != s.x || current.y != s.y)
 	{
-		ft_render_pixel(&vars->img, current.x, current.y, color);
+		draw_pixel(&vars->img, current, color);
 		error[1] = 2 * error[0];
 		if (error[1] >= delta.y)
 		{

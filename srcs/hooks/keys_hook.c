@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 13:32:35 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:36:17 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/27 16:43:04 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/27 16:54:13 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	main(int argc, char **argv)
+void	exit_hook(int keycode, t_vars *vars)
 {
-	t_map	*map;
-	t_vars	vars;
-
-	if (argc != 2)
+	if (keycode == KEY_ESC)
 	{
-		perror(ERR_USAGE);
-		exit(EXIT_FAILURE);
+		mlx_destroy_image(vars->mlx, vars->img.mlx_img);
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(EXIT_SUCCESS);
 	}
-	vars.mlx = mlx_init();
-	init_graphics(&vars);
-	map = parse_map(argv[1]);
-	free_map(map);
-	free(vars.mlx);
-	return (EXIT_SUCCESS);
+}
+
+int	keys_hook(int keycode, t_vars *vars)
+{
+	exit_hook(keycode, vars);
+	return (0);
 }
