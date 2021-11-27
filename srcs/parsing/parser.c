@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:18:40 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:14:24 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:05:52 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ t_map	*parse_file(int fd)
 	map->height = 0;
 	vectors = parse_line(tmp, map->height);
 	map->height++;
-	while (tmp[map->height])
+	while (tmp)
 	{
 		tmp = get_next_line(fd);
+		if (!tmp)
+			break ;
 		c = parse_line(tmp, map->height);
 		vectors = join_v3f(vectors, c, map);
 		map->height++;

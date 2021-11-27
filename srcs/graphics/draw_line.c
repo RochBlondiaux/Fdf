@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:08:42 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:40:54 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:52:50 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	draw_line(t_vars *vars, t_v2f f, t_v2f s, int color)
 	t_v2f	current;
 	int		error[2];
 
-	delta = ft_get_delta(f, s);
-	sign = ft_get_sign(f, s);
+	delta = get_delta(f, s);
+	sign = get_sign(f, s);
 	error[0] = delta.x + delta.y;
 	current = f;
 	while (current.x != s.x || current.y != s.y)

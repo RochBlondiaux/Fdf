@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 17:06:18 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 18:53:32 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 	t_img	img;
+	t_map	*map;
 }			t_vars;
 
 /**
@@ -116,8 +117,8 @@ t_v3f	normalize_v3f(t_v3f v);
 /**
  * Utils
  **/
-t_v2f	ft_get_delta(t_v2f f, t_v2f s);
-t_v2f	ft_get_sign(t_v2f f, t_v2f s);
+t_v2f	get_delta(t_v2f f, t_v2f s);
+t_v2f	get_sign(t_v2f f, t_v2f s);
 int		convert_rgba(int a, int r, int g, int b);
 int		rgb(int r, int g, int b);
 size_t	v3f_lenght(t_v3f **a);
@@ -126,5 +127,6 @@ t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 void	v3f_validate(t_v3f *a);
 void	free_map(t_map *map);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
+t_v2f	transform(t_v3f *v, int angle);
 
 #endif

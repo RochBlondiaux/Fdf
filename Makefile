@@ -32,6 +32,7 @@ SRC_NAME =	main.c			 \
 			graphics/draw_pixel.c \
 			graphics/draw_line.c \
 			graphics/draw_rectangle.c \
+			graphics/draw.c \
 			hooks/keys_hook.c \
 			../gnl/get_next_line.c \
 			../gnl/get_next_line_utils.c \

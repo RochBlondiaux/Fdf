@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:43:04 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 16:54:13 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:44:20 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exit_hook(int keycode, t_vars *vars)
 	{
 		mlx_destroy_image(vars->mlx, vars->img.mlx_img);
 		mlx_destroy_window(vars->mlx, vars->win);
+		free_map(vars->map);
 		exit(EXIT_SUCCESS);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:32:50 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 17:07:47 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 19:07:28 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,28 @@
 
 int	render(t_vars *vars)
 {
-	draw_rectangle(vars, vector2f(150, 150), vector2f(450, 450),
-		rgb(126, 214, 223));
+	t_v3f	**vectors;
+	int		index;
+	int		factor;
+	int		color;
+	t_v2f	tmp;
+
+	vectors = vars->map->vectors;
+	index = -1;
+	factor = 50;
+	while (vectors[++index])
+	{
+		tmp = transform(vectors[index], 30);
+		if (vectors[index]->z == 0)
+			color = rgb(236, 240, 241);
+		else
+			color = rgb(231, 76, 60);
+		// draw_line(vars, vector2f(vectors[index]->x * factor, vectors[index]->y * factor),
+		//	vector2f(tmp.x * factor, tmp.y * factor), rgb(155, 89, 182));
+		draw_rectangle(vars, vector2f(tmp.x * factor,
+				tmp.y * factor),
+			vector2f(tmp.x * factor + factor, tmp.y * factor + factor), color);
+	}
 	mlx_put_image_to_window(vars->mlx, vars->win,
 		vars->img.mlx_img, 0, 0);
 	return (0);
