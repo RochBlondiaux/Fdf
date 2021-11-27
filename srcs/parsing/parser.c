@@ -5,99 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 13:36:01 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 15:17:04 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/27 13:18:40 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/27 16:14:24 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#include "../includes/fdf.h"
 
-t_point	**ft_join_points(t_point **a, t_point **b)
+t_map	*create_map(void)
 {
-	t_point	**c;
-	size_t	i;
-	size_t	l;
+	t_map	*map;
 
-	if (!a || !b)
+	map = malloc(sizeof(t_map));
+	if (!map)
 		return (NULL);
-	i = 0;
-	l = ft_points_size(a);
-	c = malloc((l + ft_points_size(b) + 1) * sizeof(t_point *));
-	if (!c)
-		return (NULL);
-	while (a[i])
-	{
-		c[i] = a[i];
-		i++;
-	}
-	i = 0;
-	while (b[i])
-	{
-		c[i + l] = b[i];
-		i++;
-	}
-	c[i + l] = 0;
-	free(a);
-	return (c);
+	return (map);
 }
 
-t_point	**ft_parse_line(char *line, int z)
+t_v3f	**parse_line(char *line, int y)
 {
-	t_point	**points;
+	t_v3f	**vectors;
 	char	**s;
 	int		i;
-	t_point	*tmp;
+	t_v3f	*tmp;
 
 	if (!line)
 		return (NULL);
 	s = ft_split(line, ' ');
 	i = 0;
-	points = malloc(sizeof(t_point *) * ft_doublelenght(s));
-	if (!points)
+	vectors = malloc(sizeof(t_v3f *) * (double_lenght(s) + 1));
+	if (!vectors)
 		return (NULL);
 	while (s[i])
 	{
-		tmp = ft_create_point(i, s[i], z);
-		ft_check_point(tmp);
-		points[i] = tmp;
+		tmp = allocate_v3f(i, y, s[i]);
+		v3f_validate(tmp);
+		vectors[i] = tmp;
 		free(s[i]);
 		i++;
 	}
 	free(s);
 	free(line);
-	points[i] = 0;
-	return (points);
+	vectors[i] = 0;
+	return (vectors);
 }
 
-t_point	**ft_parse_file(int fd)
+t_map	*parse_file(int fd)
 {
-	int		z;
+	t_map	*map;
+	t_v3f	**vectors;
+	t_v3f	**c;
 	char	*tmp;
-	t_point	**points;
-	t_point	**c;
 
-	z = 0;
 	tmp = get_next_line(fd);
-	points = ft_parse_line(tmp, z);
-	z++;
-	while (tmp)
+	map = create_map();
+	map->height = 0;
+	vectors = parse_line(tmp, map->height);
+	map->height++;
+	while (tmp[map->height])
 	{
 		tmp = get_next_line(fd);
-		c = ft_parse_line(tmp, z);
-		if (!c)
-			break ;
-		points = ft_join_points(points, c);
-		free(c);
-		z++;
+		c = parse_line(tmp, map->height);
+		vectors = join_v3f(vectors, c, map);
+		map->height++;
 	}
 	close(fd);
-	return (points);
+	map->vectors = vectors;
+	return (map);
 }
 
-t_point	**ft_load_map(char	*filename)
+t_map	*parse_map(char	*filename)
 {
 	int		fd;
-	t_point	**points;
+	t_map	*map;
 
 	if (!filename)
 	{
@@ -110,11 +90,25 @@ t_point	**ft_load_map(char	*filename)
 		perror(strerror(9));
 		exit(EXIT_FAILURE);
 	}
-	points = ft_parse_file(fd);
-	if (!points || ft_points_size(points) == 0)
+	map = parse_file(fd);
+	if (!map)
 	{
-		perror("Empty file!");
+		perror(ERR_MAP);
 		exit(EXIT_FAILURE);
 	}
-	return (points);
+	return (map);
+}
+
+void	free_map(t_map *map)
+{
+	int	index;
+
+	index = 0;
+	while (map->vectors[index])
+	{
+		free(map->vectors[index]);
+		index++;
+	}
+	free(map->vectors);
+	free(map);
 }

@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_hook.c                                        :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 16:54:03 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 15:19:48 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/27 12:49:32 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/27 12:50:02 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#ifndef KEYS_H
+# define KEYS_H
 
-int	ft_exit_hook(int keycode, t_vars *vars)
-{
-	if (keycode == KEY_ESC)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		vars->win = NULL;
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
-}
+# define KEY_ESC 53
+
+#endif

@@ -28,17 +28,13 @@ INCDIR = includes
 # Name
 SRC_NAME =	main.c			 \
 			parsing/parser.c \
-			parsing/parsing_checks.c \
-			utils/fdf_utils.c \
-			gnl/get_next_line.c \
-			gnl/get_next_line_utils.c \
-			hooks/exit_hook.c \
-			graphics/ft_render_line.c \
-			utils/color_utils.c \
-			graphics/ft_render_pixel.c \
+			../gnl/get_next_line.c \
+			../gnl/get_next_line_utils.c \
+			utils/v2f_utils.c \
+			utils/v3f_utils.c \
 			utils/math_utils.c \
-			graphics/ft_render_rectangle.c
-
+			utils/color_utils.c \
+			utils/parsing_utils.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -47,21 +43,20 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
 # Libft
-FT		= ./srcs/libft/
+FT		= ./libft/
 FT_LIB	= $(addprefix $(FT),libft.a)
-FT_INC	= -I ./srcs/libft
-FT_LNK	= -L ./srcs/libft -l ft
+FT_INC	= -I ./libft
+FT_LNK	= -L ./libft -l ft
 
 # MinilibX
-MLX		= ./srcs/mlx/
+MLX		= ./mlx/
 MLX_LIB	= $(addprefix $(MLX),libmlx.a)
-MLX_INC	= -I ./srcs/mlx
-MLX_LNK	= -L ./srcs/mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKit
+MLX_INC	= -I ./mlx
+MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKit
 
 # Flags
 CC = gcc $(CFLAGS)
 CFLAGS = -Wall -Wextra -Werror -Imlx 
-
 
 all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
 

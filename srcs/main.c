@@ -6,57 +6,29 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:32:35 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 18:30:28 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 15:55:34 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include "../srcs/mlx/mlx.h"
-
-int	render(t_vars	*vars)
-{
-	if (vars->win == NULL)
-		return (1);
-	ft_render_rectangle(vars, ft_create_position(450, 450), ft_create_position(850, 850), 0xFFFFFF);
-	ft_render_rectangle(vars, ft_create_position(900, 450), ft_create_position(1300, 850), 0xFFFFFF);
-	mlx_put_image_to_window(vars->mlx, vars->win,
-		vars->img.mlx_img, 0, 0);
-	return (0);
-}
-
-void	setup_image(t_vars *vars)
-{
-	vars->img.mlx_img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	vars->img.addr = mlx_get_data_addr(vars->img.mlx_img, &vars->img.bpp,
-			&vars->img.line_len, &vars->img.endian);
-	mlx_loop_hook(vars->mlx, &render, vars);
-}
 
 int	main(int argc, char **argv)
 {
-	t_vars	vars;
+	t_map	*map;
 
-	(void) argv;
 	if (argc != 2)
 	{
-		perror(strerror(22));
+		perror(ERR_USAGE);
 		exit(EXIT_FAILURE);
 	}
-	vars.mlx = mlx_init();
-	if (vars.mlx == NULL)
-		return (EXIT_FAILURE);
-	vars.win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
-			WINDOW_TITLE);
-	if (vars.win == NULL)
+	map = parse_map(argv[1]);
+	printf("W: %d H: %d\n\n", map->width, map->height);
+	int a = 0;
+	while (map->vectors[a])
 	{
-		free(vars.win);
-		return (EXIT_FAILURE);
+		printf("X: %d Y: %d Z: %d\n", map->vectors[a]->x, map->vectors[a]->y, map->vectors[a]->z);
+		a++;
 	}
-	mlx_key_hook(vars.win, ft_exit_hook, &vars);
-	setup_image(&vars);
-	mlx_loop(vars.mlx);
-	mlx_destroy_image(vars.mlx, vars.img.mlx_img);
-	mlx_destroy_window(vars.mlx, vars.win);
-	free(vars.mlx);
+	free_map(map);
 	return (EXIT_SUCCESS);
 }

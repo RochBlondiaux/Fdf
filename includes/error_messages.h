@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_checks.c                                   :+:      :+:    :+:   */
+/*   error_messages.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 17:51:08 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 17:47:57 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/27 12:48:26 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/27 12:49:03 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#ifndef ERROR_MESSAGES_H
+# define ERROR_MESSAGES_H
 
-void	ft_check_point(t_point *a)
-{
-	if (!a || (a->y < 0))
-	{
-		perror("Invalid map!");
-		exit(EXIT_FAILURE);
-	}
-}
+# define ERR_USAGE			"Usage: ./fdf MAP_FILE"
+# define ERR_MAP			"Incorrect MAP_FILE"
+# define ERR_MAP_READING	"Reading error"
+
+#endif

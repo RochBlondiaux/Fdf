@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/25 13:57:01 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 14:16:02 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/27 13:17:26 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/27 13:17:56 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	rgb_to_int(double r, double g, double b)
+#include "../includes/fdf.h"
+
+int	rgb(double r, double g, double b)
 {
 	int	color;
 

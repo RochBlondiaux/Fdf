@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 13:17:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/25 16:30:02 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:08:50 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 /**
  * Includes
  **/
-# include "../srcs/mlx/mlx.h"
-# include "../srcs/libft/libft.h"
-# include "../srcs/gnl/get_next_line.h"
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
+# include "error_messages.h"
+# include "keys.h"
+
 # include <unistd.h>
 # include <stdio.h>
 # include <stdio.h>
@@ -31,7 +34,6 @@
 /**
  * Variables
  **/
-# define KEY_ESC 53
 # define WINDOW_WIDTH 1980
 # define WINDOW_HEIGHT 1080
 # define WINDOW_TITLE "FDF"
@@ -40,18 +42,23 @@
 /**
  * Structures
  **/
-typedef struct s_point
+typedef struct s_v3f
 {
 	int	x;
 	int	y;
 	int	z;
+}		t_v3f;
 
-}	t_point;
-
-typedef struct s_position {
+typedef struct s_v2f {
 	int	x;
-	int	z;
-}	t_position;
+	int	y;
+}		t_v2f;
+
+typedef struct s_map {
+	int		height;
+	int		width;
+	t_v3f	**vectors;
+}			t_map;
 
 typedef struct s_img
 {
@@ -66,37 +73,51 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 	t_img	img;
-}	t_vars;
+}			t_vars;
 
 /**
  * Hooks
  **/
-int			ft_exit_hook(int keycode, t_vars *vars);
 
 /**
  * Parsing
  **/
-t_point		**ft_load_map(char	*filename);
-void		ft_check_point(t_point *a);
+t_map	*parse_map(char	*filename);
+t_v3f	**parse_line(char *line, int y);
 
 /**
  * Graphics
  **/
-void		ft_render_pixel(t_img *img, int x, int y, int color);
-void		ft_render_line(t_vars *vars, t_position p1,
-				t_position p2, int color);
-void		ft_render_rectangle(t_vars *vars, t_position p1, t_position p2,
-				int color);
+
+/**
+ * 2D Vector
+ **/
+t_v2f	vector2f(int x, int y);
+t_v2f	add_v2f(t_v2f v1, t_v2f v2);
+t_v2f	sub_v2f(t_v2f v1, t_v2f v2);
+t_v2f	multiply_v2f(t_v2f v1, t_v2f v2);
+t_v2f	normalize_v2f(t_v2f v);
+
+/**
+ * 3D Vector
+ **/
+t_v3f	vector3f(int x, int y, int z);
+t_v3f	add_v3f(t_v3f v1, t_v3f v2);
+t_v3f	sub_v3f(t_v3f v1, t_v3f v2);
+t_v3f	multiply_v3f(t_v3f v1, t_v3f v2);
+t_v3f	normalize_v3f(t_v3f v);
 
 /**
  * Utils
  **/
-t_point		*ft_create_point(int x, char *y, int z);
-size_t		ft_points_size(t_point **a);
-size_t		ft_doublelenght(char **a);
-t_position	ft_create_position(int x, int z);
-int			rgb_to_int(double r, double g, double b);
-t_position	ft_get_delta(t_position f, t_position s);
-t_position	ft_get_sign(t_position f, t_position s);
+t_v2f	ft_get_delta(t_v2f f, t_v2f s);
+t_v2f	ft_get_sign(t_v2f f, t_v2f s);
+int		rgb(double r, double g, double b);
+size_t	v3f_lenght(t_v3f **a);
+size_t	double_lenght(char **a);
+t_v3f	*allocate_v3f(int x, int y, char *z_raw);
+void	v3f_validate(t_v3f *a);
+void	free_map(t_map *map);
+t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 
 #endif
