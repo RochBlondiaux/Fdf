@@ -18,6 +18,7 @@ void	init_window(t_fdf data)
 	data.window.height = 1080;
 	data.window.title = "FDF";
 	glib_init(&data.window);
+	mlx_loop_hook(data.window.mlx, render, &data);
 	register_key_hook(&data.window, dispatch_keys, &data);
 	mlx_loop(data.window.mlx);
 	free_map(data.map);

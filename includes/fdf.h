@@ -38,6 +38,11 @@ typedef struct s_fdf {
 }				t_fdf;
 
 /**
+ * Graphics
+ */
+int		render(t_fdf *fdf);
+
+/**
  * Controls
  */
 int		dispatch_keys(int keycode, t_fdf *fdf);
@@ -56,5 +61,6 @@ size_t	double_length(char **a);
 t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 void	v3f_validate(t_v3f *a);
+t_v3f	*find_vector(t_fdf fdf, int x, int y);
 
 #endif

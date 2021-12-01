@@ -30,7 +30,9 @@ SRC_NAME =	main.c \
 			parsing/parser.c \
 			parsing/checker.c \
 			controls/controls.c \
+			graphics/render.c \
 			utils/parsing_utils.c \
+			utils/map_utils.c \
 			../get_next_line/get_next_line.c \
 			../get_next_line/get_next_line_utils.c \
 
@@ -67,6 +69,7 @@ all: obj $(FT_LIB) $(GLIB_LIB) $(MLX_LIB) $(NAME)
 obj:
 	@echo "$(INFO)Creating objects folder... $(NOC)"
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/graphics
 	@mkdir -p $(OBJ_PATH)/controls
 	@mkdir -p $(OBJ_PATH)/parsing
 	@mkdir -p $(OBJ_PATH)/utils
