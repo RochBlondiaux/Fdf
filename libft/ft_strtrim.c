@@ -3,64 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aleferra <aleferra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:31:33 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/10 17:15:33 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:05:16 by aleferra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_getstart(const char *s1, const char *set)
+int	contains(char c, char const *set)
 {
-	size_t	len;
-	size_t	i;
+	int	i;
 
-	len = ft_strlen(s1);
+	if (!c || !set)
+		return (0);
 	i = 0;
-	while (i < len)
+	while (set[i])
 	{
-		if (ft_strchr(set, s1[i]) == 0)
-			break ;
+		if (set[i] == c)
+			return (1);
 		i++;
 	}
+	return (0);
+}
+
+int	get_start(char const *s1, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && contains(s1[i], set))
+		i++;
 	return (i);
 }
 
-static int	ft_getend(const char *s1, const char *set)
+int	get_end(char const *s1, char const *set)
 {
-	size_t	len;
-	size_t	i;
+	int	i;
 
-	len = ft_strlen(s1);
-	i = 0;
-	while (i < len)
-	{
-		if (ft_strchr(set, s1[len - i - 1]) == 0)
-			break ;
-		i++;
-	}
-	return (len - i);
+	i = ft_strlen(s1);
+	while (contains(s1[i - 1], set))
+		i--;
+	return (i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
+	char	*new;
 	int		start;
 	int		end;
-	char	*newstr;
 
-	if (s1 == NULL)
+	if (!s1)
 		return (NULL);
-	if (set == NULL)
-		return (ft_strdup(s1));
-	start = ft_getstart(s1, set);
-	end = ft_getend(s1, set);
-	if (start >= end)
+	start = get_start(s1, set);
+	end = get_end(s1, set);
+	if (end < start)
 		return (ft_strdup(""));
-	newstr = (char *)malloc(sizeof(char) * (end - start + 1));
-	if (newstr == NULL)
+	new = ft_substr(s1, start, end - start);
+	if (!new)
 		return (NULL);
-	ft_strlcpy(newstr, s1 + start, end - start + 1);
-	return (newstr);
+	return (new);
 }

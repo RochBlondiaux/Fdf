@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:20:17 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/10 16:34:40 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/04 13:33:11 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	new = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	new = malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char));
 	if (!new)
 		return (NULL);
 	index = 0;

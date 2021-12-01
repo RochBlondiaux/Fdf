@@ -6,11 +6,11 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:39:20 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/09 18:11:47 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:39:20 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <strings.h>
 
 void	ft_bzero(void *s, size_t n)
 {

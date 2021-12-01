@@ -39,15 +39,15 @@ For detailed information, refer to the [**subject of this project**](https://git
 
 `@root`
 
-* [**📁 includes:**](includes/) contains all prototypes and libraries includes.
-* [**📁 srcs:**](srcs/) contains all project sources files.
-  * [**📁 gnl:**](srcs/gnl/) contains the get_next_line project sources.
-  * [**📁 libft:**](srcs/libft/) contains the libft project sources.
-  * [**📁 mlx:**](srcs/mlx/) contains the [minilibx](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) sources.
-  * [**📁 parsing:**](srcs/parsing/) contains all parsing related files.
-  * [**📁 hooks:**](srcs/hooks/) contains all keys hooks files.
-  * [**📁 graphics:**](srcs/hooks/) contains all graphics related files.
-  * [**📁 utils:**](srcs/utils/) contains all utilities files.
+* [**📁 includes:**](old/includes/) contains all prototypes and libraries includes.
+* [**📁 srcs:**](old/srcs/) contains all project sources files.
+  * [**📁 gnl:**](old/srcs/gnl/) contains the get_next_line project sources.
+  * [**📁 libft:**](old/srcs/libft/) contains the libft project sources.
+  * [**📁 mlx:**](old/srcs/mlx/) contains the [minilibx](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) sources.
+  * [**📁 parsing:**](old/srcs/parsing/) contains all parsing related files.
+  * [**📁 hooks:**](old/srcs/hooks/) contains all keys hooks files.
+  * [**📁 graphics:**](old/srcs/hooks/) contains all graphics related files.
+  * [**📁 utils:**](old/srcs/utils/) contains all utilities files.
 
 `@/srcs/main.c`
 * `main` - Start the program and setup the window.

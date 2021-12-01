@@ -1,0 +1,6 @@
+[submodule "glib"]
+	path = glib
+	url = https://github.com/RochBlondiaux/glib
+[submodule "libft"]
+	path = libft
+	url = https://github.com/RochBlondiaux/libft

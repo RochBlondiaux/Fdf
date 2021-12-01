@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/09 17:55:37 by rblondia          #+#    #+#              #
-#    Updated: 2021/11/24 15:29:25 by rblondia         ###   ########.fr        #
+#    Created: 2021/11/02 16:37:40 by rblondia          #+#    #+#              #
+#    Updated: 2021/11/09 17:13:58 by rblondia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,21 +69,21 @@ RM		= rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c libft.h
-		@${CC} ${CFLAGS} -I ${INCLUDES} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -I ${INCLUDES} -c $< -o ${<:.c=.o}
 
 $(NAME): ${OBJS}
-		@ar rcs ${NAME} ${OBJS}
+		ar rcs ${NAME} ${OBJS}
 
 bonus: $(OBJS) $(BONUS_OBJS)
-				@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 
 all:	${NAME}
 
 clean:
-		@${RM} ${OBJS} ${BONUS_OBJS} 
+		${RM} ${OBJS} ${BONUS_OBJS} 
 
 fclean:	clean
-		@${RM} ${NAME}
+		${RM} ${NAME}
 
 re:		fclean all
 

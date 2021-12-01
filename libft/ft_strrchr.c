@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aleferra <aleferra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 18:00:53 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/09 18:00:56 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/03 12:40:36 by aleferra          #+#    #+#             */
+/*   Updated: 2021/11/09 15:04:00 by aleferra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

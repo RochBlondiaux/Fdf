@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: aleferra <aleferra@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/09 18:03:20 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/09 18:03:22 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/09 14:24:29 by aleferra          #+#    #+#             */
+/*   Updated: 2021/11/09 14:27:18 by aleferra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
