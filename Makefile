@@ -27,6 +27,10 @@ INCDIR = includes
 
 # Name
 SRC_NAME =	main.c \
+			parsing/parser.c \
+			parsing/checker.c \
+			parsing/converter.c \
+			utils/parsing_utils.c \
 			../get_next_line/get_next_line.c \
 			../get_next_line/get_next_line_utils.c \
 
@@ -50,28 +54,27 @@ MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKi
 
 # GLib
 GLIB		= ./glib/
-G_LIB		= $(addprefix $(GLIB),glib.a)
-GLIB_INC	= -I $(GLIB)includes
-GLIB_LNK	= -L ./glib/ -l gb
-
+GLIB_LIB	= $(addprefix $(GLIB), libg.a)
+GLIB_INC	= -I ./glib/includes/
+GLIB_LNK	= -L ./glib -l g
 
 # Flags
 CC = gcc $(CFLAGS)
 CFLAGS = -Wall -Wextra -Werror
 
-all: obj $(FT_LIB) $(G_LIB) $(MLX_LIB) $(NAME)
+all: obj $(FT_LIB) $(GLIB_LIB) $(MLX_LIB) $(NAME)
 
 obj:
 	@echo "$(INFO)Creating objects folder... $(NOC)"
 	@mkdir -p $(OBJ_PATH)
-	@mkdir -p $(OBJ_PATH)/utils
 	@mkdir -p $(OBJ_PATH)/parsing
+	@mkdir -p $(OBJ_PATH)/utils
 	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c
 	@$(CC) $(CFLAGS) $(MLX_INC) $(GLIB_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
 
-$(G_LIB):
+$(GLIB_LIB):
 	@echo "$(INFO)Building graphic library...$(NOC)"
 	@make -C $(GLIB)
 	@echo "$(SUCCESS)Graphic library built successfully!"
@@ -88,7 +91,7 @@ $(MLX_LIB):
 
 $(NAME): $(OBJ)
 	@echo "$(INFO)Building $(NAME)...$(NOC)"
-	@$(CC) $(OBJ) $(FT_LNK) $(MLX_LNK) -o $@
+	@$(CC) $(OBJ) $(FT_LNK) $(GLIB_LNK) $(MLX_LNK) -o $@
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 clean:

@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_messages.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 15:27:14 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/01 15:27:15 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/27 12:48:26 by rblondia          #+#    #+#             */
+/*   Updated: 2021/11/27 16:37:24 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#ifndef ERROR_MESSAGES_H
+# define ERROR_MESSAGES_H
 
-void	init_window(t_fdf data)
-{
-	data.window.width = 1980;
-	data.window.height = 1080;
-	data.window.title = "FDF";
-	glib_start(&data.window);
-}
+# define ERR_USAGE			"Usage: ./fdf MAP_FILE"
+# define ERR_MAP			"Incorrect MAP_FILE"
+# define ERR_MAP_READING	"Reading error"
 
-int	main(int argc, char **argv)
-{
-	t_fdf	data;
-
-	if (argc != 2)
-	{
-		perror(ERR_USAGE);
-		exit(EXIT_FAILURE);
-	}
-	data.map = parse_map(argv[1]);
-	init_window(data);
-	free_map(data.map);
-	return (0);
-}
+#endif
