@@ -17,7 +17,11 @@ void	init_window(t_fdf data)
 	data.window.width = 1980;
 	data.window.height = 1080;
 	data.window.title = "FDF";
-	glib_start(&data.window);
+	glib_init(&data.window);
+	register_key_hook(&data.window, dispatch_keys, &data);
+	mlx_loop(data.window.mlx);
+	free_map(data.map);
+	glib_stop(&data.window);
 }
 
 int	main(int argc, char **argv)
@@ -31,6 +35,5 @@ int	main(int argc, char **argv)
 	}
 	data.map = parse_map(argv[1]);
 	init_window(data);
-	free_map(data.map);
 	return (0);
 }

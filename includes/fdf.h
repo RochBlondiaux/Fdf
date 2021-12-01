@@ -38,6 +38,11 @@ typedef struct s_fdf {
 }				t_fdf;
 
 /**
+ * Controls
+ */
+int		dispatch_keys(int keycode, t_fdf *fdf);
+
+/**
  * Parsing
  */
 t_map	*parse_map(char	*filename);
