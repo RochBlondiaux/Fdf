@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 13:58:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/04 13:19:12 by rblondia         ###   ########.fr       */
+/*   Created: 2021/12/01 15:27:14 by rblondia          #+#    #+#             */
+/*   Updated: 2021/12/01 15:27:15 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "../includes/fdf.h"
 
-size_t	ft_strlen(const char *s)
+int	main(int argc, char **argv)
 {
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	(void) argc;
+	(void) argv;
+	int fd = open("a.t", O_RDONLY);
+	printf("FD: %d\n%s\n", fd, get_next_line(fd));
+	return (0);
 }

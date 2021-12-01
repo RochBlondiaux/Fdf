@@ -12,7 +12,7 @@ CYAN        = \033[1;36m
 WHITE       = \033[1;37m
 
 # SYMBOLS
-INFO = $(WHITE)[$(BLUE)ℹ️ $(WHITE)] 
+INFO = $(WHITE)[$(BLUE)ℹ️$(WHITE)] $(NOC)
 SUCCESS = $(WHITE)[$(GREEN)✅$(WHITE)] $(GREEN)
 WARNING = $(WHITE)[$(YELLOW)⚠️$(WHITE)] $(YELLOW)
 ERROR = $(WHITE)[$(RED)❌$(WHITE)] $(RED)
@@ -26,21 +26,9 @@ OBJ_PATH = ./objs/
 INCDIR = includes
 
 # Name
-SRC_NAME =	main.c			 \
-			parsing/parser.c \
-			graphics/init_graphics.c \
-			graphics/draw_pixel.c \
-			graphics/draw_line.c \
-			graphics/draw_rectangle.c \
-			graphics/projection.c \
-			hooks/keys_hook.c \
-			../gnl/get_next_line.c \
-			../gnl/get_next_line_utils.c \
-			utils/v2f_utils.c \
-			utils/v3f_utils.c \
-			utils/math_utils.c \
-			utils/color_utils.c \
-			utils/parsing_utils.c \
+SRC_NAME =	main.c \
+			../get_next_line/get_next_line.c \
+			../get_next_line/get_next_line_utils.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -60,24 +48,33 @@ MLX_LIB	= $(addprefix $(MLX),libmlx.a)
 MLX_INC	= -I ./mlx
 MLX_LNK	= -L ./mlx -l mlx -I /usr/X11/include -framework OpenGL -framework AppKit
 
+# GLib
+GLIB		= ./glib/
+G_LIB		= $(addprefix $(GLIB),glib.a)
+GLIB_INC	= -I $(GLIB)includes
+GLIB_LNK	= -L ./glib/ -l gb
+
+
 # Flags
 CC = gcc $(CFLAGS)
-CFLAGS = -Wall -Wextra -Werror -Imlx 
+CFLAGS = -Wall -Wextra -Werror
 
-all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
+all: obj $(FT_LIB) $(G_LIB) $(MLX_LIB) $(NAME)
 
 obj:
 	@echo "$(INFO)Creating objects folder... $(NOC)"
 	@mkdir -p $(OBJ_PATH)
-	@mkdir -p $(OBJ_PATH)/graphics
 	@mkdir -p $(OBJ_PATH)/utils
 	@mkdir -p $(OBJ_PATH)/parsing
-	@mkdir -p $(OBJ_PATH)/gnl
-	@mkdir -p $(OBJ_PATH)/hooks
 	@echo "$(SUCCESS)Objects folder created successfully$(NOC)"
 
 $(OBJ_PATH)%.o:$(SRC_PATH)%.c
-	@$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $< 
+	@$(CC) $(CFLAGS) $(MLX_INC) $(GLIB_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+
+$(G_LIB):
+	@echo "$(INFO)Building graphic library...$(NOC)"
+	@make -C $(GLIB)
+	@echo "$(SUCCESS)Graphic library built successfully!"
 
 $(FT_LIB):
 	@echo "$(INFO)Building libft library...$(NOC)"
@@ -91,7 +88,7 @@ $(MLX_LIB):
 
 $(NAME): $(OBJ)
 	@echo "$(INFO)Building $(NAME)...$(NOC)"
-	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -o $@
+	@$(CC) $(OBJ) $(FT_LNK) $(MLX_LNK) -o $@
 	@echo "$(SUCCESS)$(NAME) built successfully!$(NOC)"
 
 clean:
@@ -101,6 +98,9 @@ clean:
 	@echo "$(INFO)Deleting libft files..."
 	@make -C $(FT) clean
 	@echo "$(SUCCESS)Libft files deleted successfully!$(NOC)"
+	@echo "$(INFO)Deleting graphic library files..."
+	@make -C $(GLIB) clean
+	@echo "$(SUCCESS)Graphic library files deleted successfully!"
 	@echo "$(INFO)Deleting minilibx files..."
 	@make -C $(MLX) clean
 	@echo "$(SUCCESS)Minilibx files deleted successfully!$(NOC)"
@@ -110,5 +110,8 @@ fclean: clean
 	@rm -rf $(NAME)
 	@echo "$(SUCCESS)$(NAME) deleted successfully!$(NOC)"
 	@make -C $(FT) fclean
+	@make -C $(GLIB) fclean
 
 re: fclean all
+
+.PHONY:			all clean fclean re

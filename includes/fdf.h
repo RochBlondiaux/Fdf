@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/02 13:58:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/04 13:19:12 by rblondia         ###   ########.fr       */
+/*   Created: 2021/12/01 15:27:19 by rblondia          #+#    #+#             */
+/*   Updated: 2021/12/01 15:27:20 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#ifndef FDF_H
+# define FDF_H
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
+/**
+ * Libraries
+ */
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../glib/includes/glib.h"
+# include "../get_next_line/get_next_line.h"
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+/**
+ * Structures
+ */
+
+/**
+ * Parsing
+ */
+
+/**
+ * Utils
+ */
+
+#endif
