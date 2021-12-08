@@ -15,4 +15,7 @@
 
 # define KEY_ESC 53
 
+# define MOUSE_SCROLL_UP	4
+# define MOUSE_SCROLL_DOWN	5
+
 #endif

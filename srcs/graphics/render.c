@@ -6,26 +6,22 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/01 18:19:48 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:05:02 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-t_v2f	project(t_v3f v, t_fdf fdf)
+static t_v2f	project(t_v3f v, t_fdf fdf)
 {
-	v.x *= 20;
-	v.y *= 20;
+	v.x *= fdf.camera->zoom;
+	v.y *= fdf.camera->zoom;
 	v.x += fdf.window.width / 2;
 	v.y -= fdf.window.height / 2;
-	//v = rotate_x(v, 0);
-	//v = rotate_y(v, 0);
-	//v = rotate_z(v, 0);
 	return (isometric_projection(v));
 }
 
-
-void	draw_lines(t_fdf fdf)
+static void	draw_lines(t_fdf fdf)
 {
 	int		x;
 	int		y;
@@ -52,8 +48,15 @@ void	draw_lines(t_fdf fdf)
 	}
 }
 
+
+static void	draw_background(t_fdf *fdf)
+{
+	ft_bzero(fdf->window.img.addr, fdf->window.width * fdf->window.height * (fdf->window.img.bpp / 8));
+}
+
 int	render(t_fdf *fdf)
 {
+	draw_background(fdf);
 	draw_lines(*fdf);
 	mlx_put_image_to_window(fdf->window.mlx,
 		fdf->window.win, fdf->window.img.mlx_img, 0, 0);

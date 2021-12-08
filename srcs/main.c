@@ -6,11 +6,22 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:27:14 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/01 15:27:15 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/08 09:47:38 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+t_camera	*init_camera(void)
+{
+	t_camera	*camera;
+
+	camera = malloc(sizeof(t_camera));
+	if (!camera)
+		exit(EXIT_FAILURE);
+	camera->zoom = 10;
+	return (camera);
+}
 
 void	init_window(t_fdf data)
 {
@@ -18,8 +29,9 @@ void	init_window(t_fdf data)
 	data.window.height = 1080;
 	data.window.title = "FDF";
 	glib_init(&data.window);
-	mlx_loop_hook(data.window.mlx, render, &data);
-	register_key_hook(&data.window, dispatch_keys, &data);
+	data.camera = init_camera();
+	render(&data);
+	register_controls(&data);
 	mlx_loop(data.window.mlx);
 	free_map(data.map);
 	glib_stop(&data.window);

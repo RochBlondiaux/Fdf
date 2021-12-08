@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:27:19 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/01 15:27:20 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:05:02 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,20 @@
 /**
  * Structures
  */
+typedef struct s_camera {
+	int		zoom;
+}			t_camera;
+
 typedef struct s_map {
-	int		width;
-	int		height;
-	t_v3f	**vectors;
-}			t_map;
+	int			width;
+	int			height;
+	t_v3f		**vectors;
+}				t_map;
 
 typedef struct s_fdf {
 	t_window	window;
 	t_map		*map;
+	t_camera	*camera;
 }				t_fdf;
 
 /**
@@ -45,6 +50,7 @@ int		render(t_fdf *fdf);
 /**
  * Controls
  */
+void	register_controls(t_fdf *fdf);
 int		dispatch_keys(int keycode, t_fdf *fdf);
 
 /**
