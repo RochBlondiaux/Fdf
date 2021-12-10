@@ -24,12 +24,12 @@ void	convert_vectors(t_map *map)
 	if (!cords)
 		exit(EXIT_FAILURE);
 	i = map->width * map->height - 1;
-	index = 0;
-	while (map->vectors[index])
+	index = v3f_length(map->vectors) - 1;
+	while (map->vectors[index] && index > 0)
 	{
 		cords[i] = map->vectors[index]->z;
 		i--;
-		index++;
+		index--;
 	}
 	map->cords = cords;
 }

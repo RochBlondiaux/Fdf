@@ -45,10 +45,7 @@ t_v3f	*allocate_v3f(int x, int y, char *z_raw)
 		return (NULL);
 	z = ft_atoi(z_raw);
 	if (z == -1 && z_raw[0] != '-')
-	{
-		printf("Z: %d Raw: %s\n", z, z_raw);
 		return (NULL);
-	}
 	v = malloc(sizeof(t_v3f));
 	if (!v)
 		return (NULL);

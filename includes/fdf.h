@@ -83,5 +83,7 @@ size_t	double_length(char **a);
 t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 void	v3f_validate(t_v3f *a);
+int		atoi_base(const char *str, int base);
+int		has_prefix(const char *str, int base);
 
 #endif

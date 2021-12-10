@@ -19,8 +19,8 @@ t_v2f	project(t_v3f v, t_fdf fdf)
 	v.x *= fdf.camera->zoom;
 	v.y *= fdf.camera->zoom;
 	v.z *= fdf.camera->zoom;
-	v.x -= (fdf.window.width) / 2;
-	v.y += (fdf.window.height) / 2;
+	v.x -= (fdf.map->width * fdf.camera->zoom) / 2;
+	v.y -= (fdf.map->height * fdf.camera->zoom) / 2;
 	rotate_x(&v, fdf.camera->alpha);
 	rotate_y(&v, fdf.camera->beta);
 	rotate_z(&v, fdf.camera->gamma);
@@ -62,7 +62,7 @@ static void	draw_lines(t_fdf fdf)
 
 static void	draw_background(t_fdf *fdf)
 {
-	ft_bzero(fdf->window.img.addr, 1980 * 1080
+	ft_bzero(fdf->window.img.addr, fdf->window.width * fdf->window.height
 		* (fdf->window.img.bpp / 8));
 }
 
