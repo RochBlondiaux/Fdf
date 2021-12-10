@@ -29,7 +29,8 @@ t_v2f	project(t_v3f v, t_fdf fdf)
 	else
 		vector = parallel_projection(v, 30);
 	vector.x += fdf.window.width / 2 + fdf.camera->x_offset;
-	vector.y += (fdf.window.height + fdf.map->height * fdf.camera->zoom) / 2 + fdf.camera->y_offset;
+	vector.y += (fdf.window.height + fdf.map->height * fdf.camera->zoom)
+		/ 2 + fdf.camera->y_offset;
 	return (vector);
 }
 

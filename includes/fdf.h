@@ -27,7 +27,6 @@
  * Macros
  */
 # define FT_MIN(A, B) (((A) < (B)) ? (A) : (B))
-# define FT_MAX(A, B) (((A) > (B)) ? (A) : (B))
 
 /**
  * Structures
@@ -59,7 +58,6 @@ typedef struct s_fdf {
  * Graphics
  */
 int		render(t_fdf *fdf);
-t_v2f	project(t_v3f v, t_fdf fdf);
 
 /**
  * Controls
@@ -76,7 +74,6 @@ void	rotation_control(int keycode, t_fdf *fdf);
 t_map	*parse_map(char	*filename);
 void	free_map(t_map *map);
 void	convert_vectors(t_map *map);
-t_v3f	new_3d_point(int x, int y, t_map *map);
 
 /**
  * Utils
@@ -86,7 +83,6 @@ size_t	double_length(char **a);
 t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 void	v3f_validate(t_v3f *a);
-int		atoi_base(const char *str, int base);
-int		has_prefix(const char *str, int base);
+t_v3f	new_3d_point(int x, int y, t_map *map);
 
 #endif
