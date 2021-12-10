@@ -26,12 +26,18 @@ t_camera	*init_camera(void)
 	return (camera);
 }
 
+void	init(t_fdf *fdf)
+{
+	fdf->projection = 'I';
+}
+
 void	init_window(t_fdf data)
 {
 	data.window.width = 1980;
 	data.window.height = 1080;
 	data.window.title = "FDF";
 	glib_init(&data.window);
+	init(&data);
 	data.camera = init_camera();
 	render(&data);
 	register_controls(&data);

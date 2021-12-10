@@ -22,7 +22,10 @@ t_v2f	project(t_v3f v, t_fdf fdf)
 	rotate_x(&v, fdf.camera->alpha);
 	rotate_y(&v, fdf.camera->beta);
 	rotate_z(&v, fdf.camera->gamma);
-	return (isometric_projection(v));
+	if (fdf.projection == 'I')
+		return (isometric_projection(v));
+	else
+		return (parallel_projection(v, 30));
 }
 
 static void	draw_lines(t_fdf fdf)

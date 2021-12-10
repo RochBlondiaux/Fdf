@@ -44,6 +44,7 @@ typedef struct s_fdf {
 	t_window	window;
 	t_map		*map;
 	t_camera	*camera;
+	char		projection;
 }				t_fdf;
 
 /**
@@ -74,7 +75,5 @@ size_t	double_length(char **a);
 t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 void	v3f_validate(t_v3f *a);
-t_v3f	*find_vector(t_fdf fdf, int x, int y);
-int		is_inside(t_v3f *p, t_v3f *c, int type, t_fdf fdf);
 
 #endif

@@ -12,21 +12,6 @@
 
 #include "../../includes/fdf.h"
 
-t_v3f	*find_vector(t_fdf fdf, int x, int y)
-{
-	int		i;
-	t_v3f	**v;
-
-	i = -1;
-	v = fdf.map->vectors;
-	while (v[++i])
-	{
-		if (v[i]->x == x && v[i]->y == y)
-			return (v[i]);
-	}
-	return (NULL);
-}
-
 static int	get_index(int x, int y, int width)
 {
 	return (y * width + x);
