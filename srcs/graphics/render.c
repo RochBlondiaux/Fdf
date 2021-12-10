@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/08 14:40:53 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/10 11:10:08 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,18 @@ static void	draw_lines(t_fdf fdf)
 		{
 			color = rgb(236, 240, 241);
 			if (x != fdf.map->width - 1)
-				draw_line(&fdf.window, project(new_3d_point(x, y, fdf.map), fdf),project(new_3d_point(x + 1, y, fdf.map), fdf), color);
+				draw_line(&fdf.window, project(new_3d_point(x, y,
+							fdf.map), fdf), project(new_3d_point(x + 1, y,
+							fdf.map), fdf), color);
 			if (y != fdf.map->height - 1)
-				draw_line(&fdf.window, project(new_3d_point(x, y, fdf.map), fdf),
-					project(new_3d_point(x, y + 1, fdf.map), fdf), color);
+				draw_line(&fdf.window, project(new_3d_point(x, y,
+							fdf.map), fdf), project(new_3d_point(x, y + 1,
+							fdf.map), fdf), color);
 			x++;
 		}
 		y++;
 	}
 }
-
 
 static void	draw_background(t_fdf *fdf)
 {

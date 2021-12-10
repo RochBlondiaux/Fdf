@@ -6,13 +6,13 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:22:04 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/10 09:18:38 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/10 11:10:48 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-t_map	*create_map(void)
+static t_map	*create_map(void)
 {
 	t_map	*map;
 
@@ -22,7 +22,7 @@ t_map	*create_map(void)
 	return (map);
 }
 
-t_v3f	**parse_line(char *line, int y)
+static t_v3f	**parse_line(char *line, int y)
 {
 	t_v3f	**vectors;
 	char	**s;
@@ -50,7 +50,7 @@ t_v3f	**parse_line(char *line, int y)
 	return (vectors);
 }
 
-t_map	*parse_file(int fd)
+static t_map	*parse_file(int fd)
 {
 	t_map	*map;
 	t_v3f	**vectors;

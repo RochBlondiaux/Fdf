@@ -6,19 +6,19 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:07:15 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/08 10:25:30 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/10 11:10:27 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-int	close_fdf(t_fdf *fdf)
+static int	close_fdf(t_fdf *fdf)
 {
 	(void) fdf;
 	exit(EXIT_SUCCESS);
 }
 
-int	zoom(int button, int x, int y, t_fdf *fdf)
+static int	zoom(int button, int x, int y, t_fdf *fdf)
 {
 	(void) x;
 	(void) y;

@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:20:25 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/08 14:17:17 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/10 11:10:57 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_v3f	*find_vector(t_fdf fdf, int x, int y)
 	return (NULL);
 }
 
-int	get_index(int x, int y, int width)
+static int	get_index(int x, int y, int width)
 {
 	return (y * width + x);
 }
