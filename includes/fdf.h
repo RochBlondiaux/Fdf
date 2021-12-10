@@ -24,11 +24,6 @@
 # include "../get_next_line/get_next_line.h"
 
 /**
- * Macros
- */
-# define FT_MIN(A, B) (((A) < (B)) ? (A) : (B))
-
-/**
  * Structures
  */
 typedef struct s_camera {
@@ -38,6 +33,7 @@ typedef struct s_camera {
 	double	gamma;
 	int		x_offset;
 	int		y_offset;
+	int		z_divider;
 }			t_camera;
 
 typedef struct s_map {

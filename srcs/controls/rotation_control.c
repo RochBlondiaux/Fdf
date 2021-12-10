@@ -26,6 +26,10 @@ void	rotation_control(int keycode, t_fdf *fdf)
 		fdf->camera->gamma += 0.05;
 	else if (keycode == KEY_6)
 		fdf->camera->gamma -= 0.05;
+	else if (keycode == KEY_7)
+		fdf->camera->z_divider += 1;
+	else if (keycode == KEY_8 && fdf->camera->z_divider > 1)
+		fdf->camera->z_divider -= 1;
 	else
 		return ;
 	render(fdf);

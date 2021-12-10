@@ -18,7 +18,7 @@ t_v2f	project(t_v3f v, t_fdf fdf)
 
 	v.x *= fdf.camera->zoom;
 	v.y *= fdf.camera->zoom;
-	v.z *= fdf.camera->zoom;
+	v.z *= fdf.camera->zoom / fdf.camera->z_divider;
 	v.x -= (fdf.map->width * fdf.camera->zoom) / 2;
 	v.y -= (fdf.map->height * fdf.camera->zoom) / 2;
 	rotate_x(&v, fdf.camera->alpha);
