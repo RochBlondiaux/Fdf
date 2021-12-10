@@ -6,18 +6,21 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/06 17:05:02 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/08 14:40:53 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-static t_v2f	project(t_v3f v, t_fdf fdf)
+t_v2f	project(t_v3f v, t_fdf fdf)
 {
 	v.x *= fdf.camera->zoom;
 	v.y *= fdf.camera->zoom;
-	v.x += fdf.window.width / 2;
-	v.y -= fdf.window.height / 2;
+	v.x += fdf.window.width / 4;
+	v.y -= fdf.window.height / 4;
+	rotate_x(&v, fdf.camera->alpha);
+	rotate_y(&v, fdf.camera->beta);
+	rotate_z(&v, fdf.camera->gamma);
 	return (isometric_projection(v));
 }
 
@@ -26,6 +29,8 @@ static void	draw_lines(t_fdf fdf)
 	int		x;
 	int		y;
 	t_v3f	*c;
+	int		color;
+	t_v3f	*previous;
 
 	y = 0;
 	while (y < fdf.map->height)
@@ -33,15 +38,19 @@ static void	draw_lines(t_fdf fdf)
 		x = 0;
 		while (x < fdf.map->width)
 		{
+			color = rgb(236, 240, 241);
 			c = find_vector(fdf, x, y);
 			if (!c)
 				continue ;
+			previous = find_vector(fdf, x - 1, y);
+			if (c->z > 0)
+				color = rgb(41, 128, 185);
 			if (x != fdf.map->width - 1)
 				draw_line(&fdf.window, project(*c, fdf),
-					project(v3f(x + 1, y, c->z), fdf), rgb(236, 240, 241));
+					project(add_v3f(*c, 1, 0, 0), fdf), color);
 			if (y != fdf.map->height - 1)
 				draw_line(&fdf.window, project(*c, fdf),
-					project(v3f(x, y + 1, c->z), fdf), rgb(236, 240, 241));
+					project(add_v3f(*c, 0, 1, 0), fdf), color);
 			x++;
 		}
 		y++;
@@ -51,7 +60,8 @@ static void	draw_lines(t_fdf fdf)
 
 static void	draw_background(t_fdf *fdf)
 {
-	ft_bzero(fdf->window.img.addr, fdf->window.width * fdf->window.height * (fdf->window.img.bpp / 8));
+	ft_bzero(fdf->window.img.addr, fdf->window.width * fdf->window.height
+		* (fdf->window.img.bpp / 8));
 }
 
 int	render(t_fdf *fdf)

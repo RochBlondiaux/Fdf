@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:27:14 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/08 09:47:38 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/08 09:48:11 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ t_camera	*init_camera(void)
 	if (!camera)
 		exit(EXIT_FAILURE);
 	camera->zoom = 10;
+	camera->alpha = 0;
+	camera->beta = 0;
+	camera->gamma = 0;
 	return (camera);
 }
 

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fdf42" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/fdf_42" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/get_next_line" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/glib" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libft" vcs="Git" />

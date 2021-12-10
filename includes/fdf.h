@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:27:19 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/06 17:05:02 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:19:29 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
  */
 typedef struct s_camera {
 	int		zoom;
+	int		alpha;
+	int		beta;
+	int		gamma;
 }			t_camera;
 
 typedef struct s_map {
@@ -46,6 +49,7 @@ typedef struct s_fdf {
  * Graphics
  */
 int		render(t_fdf *fdf);
+t_v2f	project(t_v3f v, t_fdf fdf);
 
 /**
  * Controls
@@ -68,5 +72,6 @@ t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 void	v3f_validate(t_v3f *a);
 t_v3f	*find_vector(t_fdf fdf, int x, int y);
+int		is_inside(t_v3f *p, t_v3f *c, int type, t_fdf fdf);
 
 #endif

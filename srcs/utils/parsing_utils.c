@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:25:02 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/01 16:25:04 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/10 09:07:06 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ t_v3f	*allocate_v3f(int x, int y, char *z_raw)
 	t_v3f	*v;
 	int		z;
 
-	if (!z_raw || !z_raw[0])
+	if (!z_raw || ft_strlen(z_raw) <= 0)
 		return (NULL);
 	z = ft_atoi(z_raw);
-	if (z == 0 && z_raw[0] != '0')
+	if (z == -1 && z_raw[0] != '-')
+	{
+		printf("Z: %d Raw: %s\n", z, z_raw);
 		return (NULL);
+	}
 	v = malloc(sizeof(t_v3f));
 	if (!v)
 		return (NULL);
