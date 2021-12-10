@@ -98,6 +98,7 @@ t_map	*parse_map(char	*filename)
 		perror(ERR_MAP);
 		exit(EXIT_FAILURE);
 	}
+	convert_vectors(map);
 	return (map);
 }
 
@@ -111,6 +112,7 @@ void	free_map(t_map *map)
 		free(map->vectors[index]);
 		index++;
 	}
+	free(map->cords);
 	free(map->vectors);
 	free(map);
 }

@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   convert.c 		                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 18:20:25 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/08 14:17:17 by rblondia         ###   ########.fr       */
+/*   Created: 2021/11/11 17:01:07 by                   #+#    #+#             */
+/*   Updated: 2021/12/10 09:21:25 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-t_v3f	*find_vector(t_fdf fdf, int x, int y)
+void	convert_vectors(t_map *map)
 {
-	int		i;
-	t_v3f	**v;
+	int		*cords;
+	ssize_t	i;
+	size_t	arr_size;
+	size_t	index;
 
-	i = -1;
-	v = fdf.map->vectors;
-	while (v[++i])
+	arr_size = map->width * map->height * sizeof(int);
+	cords = malloc(sizeof(int) * arr_size);
+	if (!cords)
+		exit(EXIT_FAILURE);
+	i = map->width * map->height - 1;
+	index = 0;
+	while (map->vectors[index])
 	{
-		if (v[i]->x == x && v[i]->y == y)
-			return (v[i]);
+		cords[i] = map->vectors[index]->z;
+		i--;
+		index++;
 	}
-	return (NULL);
-}
-
-int	get_index(int x, int y, int width)
-{
-	return (y * width + x);
-}
-
-t_v3f	new_3d_point(int x, int y, t_map *map)
-{
-	t_v3f	point;
-	int		index;
-
-	index = get_index(x, y, map->width);
-	point.x = x;
-	point.y = y;
-	point.z = map->cords[index];
-	return (point);
+	map->cords = cords;
 }

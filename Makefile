@@ -31,6 +31,7 @@ SRC_NAME =	main.c \
 			parsing/checker.c \
 			controls/controls.c \
 			graphics/render.c \
+			utils/convert.c \
 			utils/parsing_utils.c \
 			utils/map_utils.c \
 			../get_next_line/get_next_line.c \

@@ -37,6 +37,7 @@ typedef struct s_map {
 	int			width;
 	int			height;
 	t_v3f		**vectors;
+	int			*cords;
 }				t_map;
 
 typedef struct s_fdf {
@@ -62,6 +63,8 @@ int		dispatch_keys(int keycode, t_fdf *fdf);
  */
 t_map	*parse_map(char	*filename);
 void	free_map(t_map *map);
+void	convert_vectors(t_map *map);
+t_v3f	new_3d_point(int x, int y, t_map *map);
 
 /**
  * Utils
