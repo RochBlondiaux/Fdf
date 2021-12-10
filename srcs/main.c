@@ -65,6 +65,11 @@ int	main(int argc, char **argv)
 		perror(ERR_USAGE);
 		exit(EXIT_FAILURE);
 	}
+	else if (!is_fdf_map(argv[1]))
+	{
+		perror(ERR_INVALID_EXTENSION);
+		exit(EXIT_FAILURE);
+	}
 	data.map = parse_map(argv[1]);
 	init_window(data);
 	return (0);

@@ -12,28 +12,49 @@
 
 #include "../../includes/fdf.h"
 
+static t_point	*create_point(int z, int color)
+{
+	t_point	*p;
+
+	p = malloc(sizeof(t_point));
+	if (!p)
+		return (NULL);
+	p->z = z;
+	p->color = color;
+	return (p);
+}
+
 void	convert_vectors(t_map *map)
 {
-	int		*cords;
+	t_point	**cords;
 	ssize_t	i;
 	size_t	arr_size;
 	size_t	index;
 
-	arr_size = map->width * map->height * sizeof(int);
-	cords = malloc(sizeof(int) * arr_size);
+	arr_size = map->width * map->height;
+	cords = malloc(sizeof(t_point *) * (arr_size + 1));
 	if (!cords)
 		exit(EXIT_FAILURE);
 	i = map->width * map->height - 1;
 	index = v3f_length(map->vectors) - 1;
-	while (map->vectors[index] && index > 0)
+	while (map->vectors[index])
 	{
-		cords[i] = map->vectors[index]->z;
-		if (cords[i] < map->z_min)
-			map->z_min = cords[i];
-		if (cords[i] > map->z_max)
-			map->z_max = cords[i];
+		cords[i] = create_point(map->vectors[index]->z,
+				map->vectors[index]->color);
+		if (cords[i]->z < map->z_min)
+			map->z_min = cords[i]->z;
+		if (cords[i]->z > map->z_max)
+			map->z_max = cords[i]->z;
 		i--;
 		index--;
 	}
+	cords[arr_size] = NULL;
 	map->cords = cords;
+}
+
+int	get_point_color(t_point *point, t_fdf *fdf)
+{
+	if (point->color == -1)
+		return (get_default_color(point->z, fdf->map));
+	return (point->color);
 }

@@ -114,6 +114,12 @@ void	free_map(t_map *map)
 		free(map->vectors[index]);
 		index++;
 	}
+	index = 0;
+	while (map->cords[index])
+	{
+		free(map->cords[index]);
+		index++;
+	}
 	free(map->cords);
 	free(map->vectors);
 	free(map);

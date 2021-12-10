@@ -34,6 +34,8 @@ SRC_NAME =	main.c \
 			controls/rotation_control.c \
 			controls/movement_control.c \
 			graphics/render.c \
+			utils/string_utils.c \
+			utils/hexa_utils.c \
 			utils/convert.c \
 			utils/parsing_utils.c \
 			utils/map_utils.c \

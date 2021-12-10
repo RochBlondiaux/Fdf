@@ -12,83 +12,70 @@
 
 #include "libft.h"
 
-static int	ft_count_separators(char const *s, char c)
+static size_t	ft_count_words(char const *s, char c)
 {
-	int	i;
+	size_t	words;
 
-	i = 0;
-	while (s[i] == c)
-		i++;
-	return (i);
-}
-
-static void	ft_find_word(char const *s, char c, int index, t_word *word)
-{
-	int		lenght;
-	int		words;
-	int		i;
-
-	lenght = 0;
 	words = 0;
-	i = ft_count_separators(s, c);
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] == c)
+		while (*s == c)
+			s++;
+		if (*s)
 		{
-			if (words == index)
-				break ;
-			while (s[i + 1] == c)
-				i++;
-			lenght = 0;
 			words++;
+			while (*s && *s != c)
+				s++;
 		}
-		else
-			lenght++;
-		i++;
 	}
-	word->len = lenght;
-	word->start = i - lenght;
+	return (words);
 }
 
-static int	ft_count_word(char const *s, char c)
+static char	*ft_get_word(char *word, char c)
 {
-	int	count;
-	int	i;
+	char	*start;
 
-	count = 0;
+	start = word;
+	while (*word && *word != c)
+		word++;
+	*word = '\0';
+	return (ft_strdup(start));
+}
+
+static char	**ft_get_words(char *s, char c, size_t words_count)
+{
+	char	**words;
+	char	*word;
+	size_t	i;
+
 	i = 0;
-	while (s[i])
+	words = malloc(sizeof(char *) * (words_count + 1));
+	while (i < words_count)
 	{
-		while (s[i] == c && s[i])
-			i++;
-		if (s[i] != c && s[i])
-			count++;
-		while (s[i] != c && s[i])
-			i++;
+		while (*s == c)
+			s++;
+		if (*s)
+		{
+			word = ft_get_word(s, c);
+			if (!word)
+				return (NULL);
+			words[i++] = word;
+			s += (ft_strlen(word) + 1);
+		}
 	}
-	return (count);
+	words[i] = NULL;
+	return (words);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		words;
-	char	**array;
-	int		index;
-	t_word	word;
+	char	**words;
+	char	*line;
 
-	if (!s)
+	line = strdup((char *) s);
+	if (!s || !line)
 		return (NULL);
-	words = ft_count_word(s, c);
-	array = malloc(sizeof(char *) * (words + 1));
-	if (!array)
-		return (NULL);
-	index = 0;
-	while (index < words)
-	{
-		ft_find_word(s, c, index, &word);
-		array[index] = ft_substr(s, word.start, word.len);
-		index++;
-	}
-	array[index] = 0;
-	return (array);
+	words = ft_get_words(line, c, ft_count_words(line, c));
+	free(line);
+	return (words);
 }

@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:25:02 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/10 09:07:06 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:47:50 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,40 @@ size_t	double_length(char **a)
 	return (length);
 }
 
+static void	free_parts(char **parts)
+{
+	int	i;
+
+	i = 0;
+	while (parts[i])
+	{
+		free(parts[i]);
+		i++;
+	}
+	free(parts);
+}
+
 t_v3f	*allocate_v3f(int x, int y, char *z_raw)
 {
 	t_v3f	*v;
 	int		z;
+	char	**parts;
 
 	if (!z_raw || ft_strlen(z_raw) <= 0)
 		return (NULL);
-	z = ft_atoi(z_raw);
-	if (z == -1 && z_raw[0] != '-')
+	parts = ft_split(z_raw, ',');
+	if (!parts)
 		return (NULL);
-	v = malloc(sizeof(t_v3f));
+	z = ft_atoi(parts[0]);
+	if ((z == -1 && parts[0][0] != '-'))
+	{
+		free_parts(parts);
+		return (NULL);
+	}
+	v = create_vector3f(x, y, z, atoi_base(parts[1], 16));
+	free_parts(parts);
 	if (!v)
 		return (NULL);
-	v->x = x;
-	v->y = y;
-	v->z = z;
 	return (v);
 }
 

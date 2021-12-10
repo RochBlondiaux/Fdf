@@ -38,7 +38,8 @@ static void	draw_lines(t_fdf fdf)
 {
 	int		x;
 	int		y;
-	int		z;
+	t_point	*point;
+	int		color;
 
 	y = 0;
 	while (y < fdf.map->height)
@@ -46,15 +47,16 @@ static void	draw_lines(t_fdf fdf)
 		x = 0;
 		while (x < fdf.map->width)
 		{
-			z = fdf.map->cords[get_index(x, y, fdf.map->width)];
+			point = fdf.map->cords[get_index(x, y, fdf.map->width)];
+			color = get_point_color(point, &fdf);
 			if (x != fdf.map->width - 1)
 				draw_line(&fdf.window, project(new_3d_point(x, y,
 							fdf.map), fdf), project(new_3d_point(x + 1, y,
-							fdf.map), fdf), get_default_color(z, fdf.map));
+							fdf.map), fdf), color);
 			if (y != fdf.map->height - 1)
 				draw_line(&fdf.window, project(new_3d_point(x, y,
 							fdf.map), fdf), project(new_3d_point(x, y + 1,
-							fdf.map), fdf), get_default_color(z, fdf.map));
+							fdf.map), fdf), color);
 			x++;
 		}
 		y++;

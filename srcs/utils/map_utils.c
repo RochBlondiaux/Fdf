@@ -25,7 +25,7 @@ t_v3f	new_3d_point(int x, int y, t_map *map)
 	index = get_index(x, y, map->width);
 	point.x = x;
 	point.y = y;
-	point.z = map->cords[index];
+	point.z = map->cords[index]->z;
 	return (point);
 }
 

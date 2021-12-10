@@ -37,12 +37,17 @@ typedef struct s_camera {
 	int		z_divider;
 }			t_camera;
 
+typedef struct s_point {
+	int		z;
+	int		color;
+}			t_point;
+
 typedef struct s_map {
 	int			width;
 	int			height;
 	t_v3f		**vectors;
-	int			*cords;
-	int 		z_min;
+	t_point		**cords;
+	int			z_min;
 	int			z_max;
 }				t_map;
 
@@ -85,5 +90,10 @@ void	v3f_validate(t_v3f *a);
 t_v3f	new_3d_point(int x, int y, t_map *map);
 int		get_default_color(int z, t_map *map);
 int		get_index(int x, int y, int width);
+int		is_empty(char *str);
+int		atoi_base(const char *str, int base);
+int		is_fdf_map(char *filename);
+t_v3f	*create_vector3f(int x, int y, int z, int color);
+int		get_point_color(t_point *point, t_fdf *fdf);
 
 #endif
