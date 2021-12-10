@@ -30,6 +30,9 @@ SRC_NAME =	main.c \
 			parsing/parser.c \
 			parsing/checker.c \
 			controls/controls.c \
+			controls/zoom_control.c \
+			controls/rotation_control.c \
+			controls/movement_control.c \
 			graphics/render.c \
 			utils/hexa_utils.c \
 			utils/convert.c \

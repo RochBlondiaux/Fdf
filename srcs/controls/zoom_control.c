@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.h                                             :+:      :+:    :+:   */
+/*   zoom_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 12:49:32 by rblondia          #+#    #+#             */
-/*   Updated: 2021/11/27 12:50:02 by rblondia         ###   ########.fr       */
+/*   Created: 2021/12/01 18:07:15 by rblondia          #+#    #+#             */
+/*   Updated: 2021/12/10 11:10:27 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYS_H
-# define KEYS_H
+#include "../../includes/fdf.h"
 
-# define KEY_ESC 53
-
-# define MOUSE_SCROLL_UP	4
-# define MOUSE_SCROLL_DOWN	5
-# define KEY_P 35
-# define KEY_UP 126
-# define KEY_DOWN 125
-# define KEY_RIGHT 124
-# define KEY_LEFT 123
-# define KEY_1 18
-# define KEY_2 19
-# define KEY_3 20
-# define KEY_4 21
-# define KEY_5 23
-# define KEY_6 22
-# define KEY_7 26
-
-
-#endif
+int	zoom(int button, int x, int y, t_fdf *fdf)
+{
+	(void) x;
+	(void) y;
+	if (button == MOUSE_SCROLL_UP)
+		fdf->camera->zoom++;
+	else if (button == MOUSE_SCROLL_DOWN)
+		fdf->camera->zoom--;
+	if (fdf->camera->zoom < 0)
+		fdf->camera->zoom = 1;
+	render(fdf);
+	return (0);
+}

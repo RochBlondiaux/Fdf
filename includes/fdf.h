@@ -66,6 +66,9 @@ t_v2f	project(t_v3f v, t_fdf fdf);
  */
 void	register_controls(t_fdf *fdf);
 int		dispatch_keys(int keycode, t_fdf *fdf);
+int		zoom(int button, int x, int y, t_fdf *fdf);
+void	movement_control(int keycode, t_fdf *fdf);
+void	rotation_control(int keycode, t_fdf *fdf);
 
 /**
  * Parsing
