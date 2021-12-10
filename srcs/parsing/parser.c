@@ -19,6 +19,8 @@ static t_map	*create_map(void)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (NULL);
+	map->z_max = 0;
+	map->z_min = 0;
 	return (map);
 }
 

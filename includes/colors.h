@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,38 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fdf.h"
+#ifndef COLOR_H
 
-int	get_index(int x, int y, int width)
-{
-	return (y * width + x);
-}
+# define COLOR_H
 
-t_v3f	new_3d_point(int x, int y, t_map *map)
-{
-	t_v3f	point;
-	int		index;
+# define TEXT_COLOR			0xEAEAEA
+# define BACKGROUND			0x222222
+# define MENU_BACKGROUND	0x1E1E1E
 
-	index = get_index(x, y, map->width);
-	point.x = x;
-	point.y = y;
-	point.z = map->cords[index];
-	return (point);
-}
+# define COLOR_DISCO		0x9A1F6A
+# define COLOR_BRICK_RED	0xC2294E
+# define COLOR_FLAMINGO		0xEC4B27
+# define COLOR_JAFFA		0xEF8633
+# define COLOR_SAFFRON		0xF3AF3D
 
-int	get_default_color(int z, t_map *map)
-{
-	double	percentage;
-
-	percentage = percent(map->z_min, map->z_max, z);
-	if (percentage < 0.2)
-		return (COLOR_DISCO);
-	else if (percentage < 0.4)
-		return (COLOR_BRICK_RED);
-	else if (percentage < 0.6)
-		return (COLOR_FLAMINGO);
-	else if (percentage < 0.8)
-		return (COLOR_JAFFA);
-	else
-		return (COLOR_SAFFRON);
-}
+#endif

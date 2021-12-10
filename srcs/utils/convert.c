@@ -28,6 +28,10 @@ void	convert_vectors(t_map *map)
 	while (map->vectors[index] && index > 0)
 	{
 		cords[i] = map->vectors[index]->z;
+		if (cords[i] < map->z_min)
+			map->z_min = cords[i];
+		if (cords[i] > map->z_max)
+			map->z_max = cords[i];
 		i--;
 		index--;
 	}

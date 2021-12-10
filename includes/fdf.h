@@ -18,6 +18,7 @@
  */
 # include "error_messages.h"
 # include "keys.h"
+# include "colors.h"
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 # include "../glib/includes/glib.h"
@@ -41,6 +42,8 @@ typedef struct s_map {
 	int			height;
 	t_v3f		**vectors;
 	int			*cords;
+	int 		z_min;
+	int			z_max;
 }				t_map;
 
 typedef struct s_fdf {
@@ -80,5 +83,7 @@ t_v3f	*allocate_v3f(int x, int y, char *z_raw);
 t_v3f	**join_v3f(t_v3f **a, t_v3f **b, t_map *map);
 void	v3f_validate(t_v3f *a);
 t_v3f	new_3d_point(int x, int y, t_map *map);
+int		get_default_color(int z, t_map *map);
+int		get_index(int x, int y, int width);
 
 #endif
