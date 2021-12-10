@@ -18,5 +18,9 @@
 # define MOUSE_SCROLL_UP	4
 # define MOUSE_SCROLL_DOWN	5
 # define KEY_P 35
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_RIGHT 124
+# define KEY_LEFT 123
 
 #endif

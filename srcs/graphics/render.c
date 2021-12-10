@@ -14,18 +14,23 @@
 
 t_v2f	project(t_v3f v, t_fdf fdf)
 {
+	t_v2f	vector;
+
 	v.x *= fdf.camera->zoom;
 	v.y *= fdf.camera->zoom;
 	v.z *= fdf.camera->zoom;
-	v.x += fdf.window.width / 2;
-	v.y -= fdf.window.height / 2;
+	v.x -= (fdf.window.width) / 2;
+	v.y += (fdf.window.height) / 2;
 	rotate_x(&v, fdf.camera->alpha);
 	rotate_y(&v, fdf.camera->beta);
 	rotate_z(&v, fdf.camera->gamma);
 	if (fdf.projection == 'I')
-		return (isometric_projection(v));
+		vector = isometric_projection(v);
 	else
-		return (parallel_projection(v, 30));
+		vector = parallel_projection(v, 30);
+	vector.x += fdf.window.width / 2 + fdf.camera->x_offset;
+	vector.y += (fdf.window.height + fdf.map->height * fdf.camera->zoom) / 2 + fdf.camera->y_offset;
+	return (vector);
 }
 
 static void	draw_lines(t_fdf fdf)
@@ -57,7 +62,7 @@ static void	draw_lines(t_fdf fdf)
 
 static void	draw_background(t_fdf *fdf)
 {
-	ft_bzero(fdf->window.img.addr, fdf->window.width * fdf->window.height
+	ft_bzero(fdf->window.img.addr, 1980 * 1080
 		* (fdf->window.img.bpp / 8));
 }
 

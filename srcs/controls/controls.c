@@ -32,15 +32,13 @@ static int	zoom(int button, int x, int y, t_fdf *fdf)
 	return (0);
 }
 
-static int	change_projection(int key, t_fdf *fdf)
+static void	change_projection(t_fdf *fdf)
 {
-	(void) key;
 	if (fdf->projection == 'I')
 		fdf->projection = 'P';
 	else if (fdf->projection == 'P')
 		fdf->projection = 'I';
 	render(fdf);
-	return (0);
 }
 
 int	dispatch_keys(int keycode, t_fdf *fdf)
@@ -52,6 +50,28 @@ int	dispatch_keys(int keycode, t_fdf *fdf)
 		free_map(fdf->map);
 		exit(EXIT_SUCCESS);
 	}
+	else if (keycode == KEY_P)
+		change_projection(fdf);
+	else if (keycode == KEY_LEFT)
+	{
+		fdf->camera->x_offset -= 10;
+		render(fdf);
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		fdf->camera->x_offset += 10;
+		render(fdf);
+	}
+	else if (keycode == KEY_UP)
+	{
+		fdf->camera->y_offset -= 10;
+		render(fdf);
+	}
+	else if (keycode == KEY_DOWN)
+	{
+		fdf->camera->y_offset += 10;
+		render(fdf);
+	}
 	return (0);
 }
 
@@ -60,5 +80,4 @@ void	register_controls(t_fdf *fdf)
 	register_key_hook(&fdf->window, dispatch_keys, fdf);
 	mlx_hook(fdf->window.win, MOUSE_SCROLL_UP, 0, zoom, fdf);
 	mlx_hook(fdf->window.win, 17, 0, close_fdf, fdf);
-	mlx_hook(fdf->window.win, 2, 35, change_projection, fdf);
 }

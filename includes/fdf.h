@@ -24,13 +24,21 @@
 # include "../get_next_line/get_next_line.h"
 
 /**
+ * Macros
+ */
+# define FT_MIN(A, B) (((A) < (B)) ? (A) : (B))
+# define FT_MAX(A, B) (((A) > (B)) ? (A) : (B))
+
+/**
  * Structures
  */
 typedef struct s_camera {
 	int		zoom;
-	int		alpha;
-	int		beta;
-	int		gamma;
+	double	alpha;
+	double	beta;
+	double	gamma;
+	int		x_offset;
+	int		y_offset;
 }			t_camera;
 
 typedef struct s_map {

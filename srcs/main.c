@@ -12,17 +12,20 @@
 
 #include "../includes/fdf.h"
 
-t_camera	*init_camera(void)
+t_camera	*init_camera(t_fdf fdf)
 {
 	t_camera	*camera;
 
 	camera = malloc(sizeof(t_camera));
 	if (!camera)
 		exit(EXIT_FAILURE);
-	camera->zoom = 10;
+	camera->zoom = FT_MIN(fdf.window.width / fdf.map->width / 2,
+			fdf.window.height / fdf.map->height / 2);
 	camera->alpha = 0;
 	camera->beta = 0;
 	camera->gamma = 0;
+	camera->x_offset = 0;
+	camera->y_offset = 0;
 	return (camera);
 }
 
@@ -38,7 +41,7 @@ void	init_window(t_fdf data)
 	data.window.title = "FDF";
 	glib_init(&data.window);
 	init(&data);
-	data.camera = init_camera();
+	data.camera = init_camera(data);
 	render(&data);
 	register_controls(&data);
 	mlx_loop(data.window.mlx);
