@@ -39,42 +39,64 @@ For detailed information, refer to the [**subject of this project**](https://git
 
 `@root`
 
-* [**📁 includes:**](old/includes/) contains all prototypes and libraries includes.
-* [**📁 srcs:**](old/srcs/) contains all project sources files.
-  * [**📁 gnl:**](old/srcs/gnl/) contains the get_next_line project sources.
-  * [**📁 libft:**](old/srcs/libft/) contains the libft project sources.
-  * [**📁 mlx:**](old/srcs/mlx/) contains the [minilibx](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) sources.
-  * [**📁 parsing:**](old/srcs/parsing/) contains all parsing related files.
-  * [**📁 hooks:**](old/srcs/hooks/) contains all keys hooks files.
-  * [**📁 graphics:**](old/srcs/hooks/) contains all graphics related files.
-  * [**📁 utils:**](old/srcs/utils/) contains all utilities files.
+* [**📁 includes:**](includes/) contains all prototypes and libraries includes.
+* [**📁 gnl:**](get_next_line/) contains the get_next_line project sources.
+* [**📁 mlx:**](mlx/) contains the [minilibx](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) sources.
+* [**📁 libft:**](libft/) contains the libft project sources.
+* [**📁 glib:**](glib/) contains the glib project sources.
+* [**📁 srcs:**](srcs/) contains all project sources files.
+  * [**📁 controls:**](srcs/controls/) contains all controls related files.
+  * [**📁 parsing:**](srcs/parsing/) contains all parsing related files.
+  * [**📁 graphics:**](srcs/hooks/) contains all graphics related files.
+  * [**📁 utils:**](srcs/utils/) contains all utilities files.
 
 `@/srcs/main.c`
-* `main` - Start the program and setup the window.
-* `setup_image` - setup image in window.
-* `render` - render image to window.
+* `main` - Starts the program.
+* `init_camera` - Initializes virtual camera.
+* `init` - Initializes camera & set default projection.
+* `init_window` - Initializes window & image via the glib.
 
 `@/srcs/graphics/`
-* `ft_render_pixel` - Draw a pixel on the screen.
-* `ft_render_line` - Draw a line between two points.
-* `ft_render_rectangle` - Draw a rectangle between two points.
+* `render` - Renders backgrounds and lines to window.
+* `clear_image` - Draws the background.
+* `draw_lines` - Draws lines from vector list.
+* `project` - Projects image using isometric or parallel function, rotate & fit camera.
 
-`@/srcs/hooks/`
-* `ft_exit_hook` - Close program on escape key press.
+`@/srcs/controls/`
+* `close_fdf` - Closes program on escape key press.
+* `change_projection` - Changes projection between parrallel & isometric.
+* `dispatch_keys` - Calls accurate functions when a key is pressed.
+* `register_controls` - Registers keys events.
+* `movement_control` - Manage camera movements controls.
+* `rotation_control` - Manage camera rotation controls.
+* `zoom` - Manage camera zoom controls.
 
 `@/srcs/parsing/`
-* `ft_check_point` -  Checks if a point is valid.
-* `ft_load_map` - Load points from provided file. 
-* `ft_parse_file` - Parse points from provided file.
-* `ft_parse_line` - Parse points from a single line.
-* `ft_join_points` - Join points lists together.
+* `parse_map` - Loads points from provided file. 
+* `parse_file` - Parses points from provided file.
+* `parse_line` - Parses points from a single line.
+* `create_map` - Creates map in heap memory stack.
+* `v3f_validate` - Validates vectors 3f.
+* `free_map` - Free the map and all its components in memory to avoid leaks.
 
 `@/srcs/utils/`
-* `rgb_to_int` - Convert RGB color to integer.
-* `ft_create_point` - Create a point structure from its x, y, z.
-* `ft_points_size` - Get points list size.
-* `ft_doublelenght` - Get bi-dimensional list length.
-* `ft_create_position` - Create position structure from its x & y.
+* `create_point` - Creates a point.
+* `convert_vectors` - Converts vectors 3f to points list.
+* `get_point_color` - Gets point color.
+* `isdigit_base` - Checks if a base is digit.
+* `has_prefix` - Checks if base prefix is present.
+* `atoi_base` - Parses hexadecimals from string.
+* `get_index` - Gets point index.
+* `new_3d_point` - Creates new vector 3f from 2D point.
+* `get_default_color` - Gets default color of a point from its altitude (z).
+* `v3f_length` - Gets length of a vector3f array.
+* `double_length` - Gets length of a pointer on pointer on char.
+* `free_parts` - Frees pointer on pointer on char.
+* `allocate_v3f` - Creates a new vector3f from parsing.
+* `join_v3f` - Concatenates two arrays of vector 3f.
+* `is_empty` - Checks if a string is empty.
+* `is_fdf_map` - Checks if filename has extension ".fdf".
+* `create_vector3f` - Create new vector 3f from its coordinates.
 
 `@/srcs/gnl/`
 * `ft_read`	- read & wrap a buffer from a file descriptor.
@@ -141,8 +163,20 @@ The function is written in C language and thus needs the **`gcc` compiler** and 
 
 ### Instructions
 
-_Coming soon_
+#### 1. Installation
+In order to install the fdf, you need to clone it:
+```bash
+git clone https://github.com/RochBlondiaux/Fdf.git && cd Fdf
+```
+Then, compile it with make:
+```bash
+make
+```
 
-## 📋 Testing
-
-_Coming soon_
+#### 2. Usage
+It's really simple, you just have to execute this command:
+```bash
+./fdf my_map.fdf
+```
+The program only accept `.fdf` files, you can use maps from the `maps/` folder,
+create your owns or even generate them with [42MapGenerator](https://github.com/jgigault/42MapGenerator).
