@@ -6,13 +6,13 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/10 11:10:08 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/13 11:04:16 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/fdf.h"
 
-t_v2f	project(t_v3f v, t_fdf fdf)
+static t_v2f	project(t_v3f v, t_fdf fdf)
 {
 	t_v2f	vector;
 
@@ -63,15 +63,27 @@ static void	draw_lines(t_fdf fdf)
 	}
 }
 
-static void	draw_background(t_fdf *fdf)
+static void	clear_image(t_fdf *fdf)
 {
-	ft_bzero(fdf->window.img.addr, fdf->window.width * fdf->window.height
-		* (fdf->window.img.bpp / 8));
+	int	y;
+	int	x;
+
+	y= 0;
+	while (y < fdf->window.height)
+	{
+		x = 0;
+		while (x < fdf->window.width)
+		{
+			draw_pixel(&fdf->window, v2f(x, y), BACKGROUND);
+			x++;
+		}
+		y++;
+	}
 }
 
 int	render(t_fdf *fdf)
 {
-	draw_background(fdf);
+	clear_image(fdf);
 	draw_lines(*fdf);
 	mlx_put_image_to_window(fdf->window.mlx,
 		fdf->window.win, fdf->window.img.mlx_img, 0, 0);

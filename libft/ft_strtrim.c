@@ -12,23 +12,12 @@
 
 #include "libft.h"
 
-int	contains(char c, char const *set)
+int	contains(char c, char set)
 {
-	int	i;
-
-	if (!c || !set)
-		return (0);
-	i = 0;
-	while (set[i])
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
+	return (c && set && c == set);
 }
 
-int	get_start(char const *s1, char const *set)
+int	get_start(char const *s1, char set)
 {
 	int	i;
 
@@ -38,7 +27,7 @@ int	get_start(char const *s1, char const *set)
 	return (i);
 }
 
-int	get_end(char const *s1, char const *set)
+int	get_end(char const *s1, char set)
 {
 	int	i;
 
@@ -48,7 +37,7 @@ int	get_end(char const *s1, char const *set)
 	return (i);
 }
 
-char	*ft_strtrim(char *s1, char const *set)
+char	*ft_strtrim(char *s1, char set)
 {
 	char	*new;
 	int		start;
