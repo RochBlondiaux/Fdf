@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:45 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/13 11:04:16 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:50:36 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	clear_image(t_fdf *fdf)
 	int	y;
 	int	x;
 
-	y= 0;
+	y = 0;
 	while (y < fdf->window.height)
 	{
 		x = 0;

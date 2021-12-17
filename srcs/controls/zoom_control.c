@@ -22,6 +22,5 @@ int	zoom(int button, int x, int y, t_fdf *fdf)
 		fdf->camera->zoom--;
 	if (fdf->camera->zoom < 0)
 		fdf->camera->zoom = 1;
-	render(fdf);
 	return (0);
 }

@@ -27,7 +27,6 @@ static void	change_projection(t_fdf *fdf)
 	fdf->camera->alpha = 0;
 	fdf->camera->beta = 0;
 	fdf->camera->gamma = 0;
-	render(fdf);
 }
 
 int	dispatch_keys(int keycode, t_fdf *fdf)

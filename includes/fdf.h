@@ -6,7 +6,7 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:27:19 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/08 13:19:29 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:38:14 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "../libft/libft.h"
 # include "../glib/includes/glib.h"
 # include "../get_next_line/get_next_line.h"
+# include "pthread.h"
+
 
 /**
  * Structures

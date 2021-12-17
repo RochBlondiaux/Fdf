@@ -22,7 +22,4 @@ void	movement_control(int keycode, t_fdf *fdf)
 		fdf->camera->y_offset -= 10;
 	else if (keycode == KEY_DOWN)
 		fdf->camera->y_offset += 10;
-	else
-		return ;
-	render(fdf);
 }

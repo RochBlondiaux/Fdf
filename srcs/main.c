@@ -6,10 +6,11 @@
 /*   By: rblondia <rblondia@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 15:27:14 by rblondia          #+#    #+#             */
-/*   Updated: 2021/12/13 10:57:19 by rblondia         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:38:52 by rblondia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <time.h>
 #include "../includes/fdf.h"
 
 t_camera	*init_camera(t_fdf fdf)
@@ -42,6 +43,17 @@ void	init(t_fdf *fdf)
 	fdf->camera = init_camera(*fdf);
 }
 
+int	rotate_infinity(void *f)
+{
+	t_fdf	*fdf;
+
+	fdf = (t_fdf *) f;
+	//fdf->camera->gamma += 0.05;
+	render(fdf);
+	usleep(100000);
+	return (0);
+}
+
 void	init_window(t_fdf data)
 {
 	data.window.width = 1980;
@@ -49,7 +61,7 @@ void	init_window(t_fdf data)
 	data.window.title = "FDF";
 	glib_init(&data.window);
 	init(&data);
-	render(&data);
+	mlx_loop_hook(data.window.mlx, &rotate_infinity, &data);
 	register_controls(&data);
 	mlx_loop(data.window.mlx);
 	free_map(data.map);

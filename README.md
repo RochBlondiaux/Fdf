@@ -23,6 +23,8 @@
 	<a href="#%EF%B8%8F-usage">Usage</a>
 	<span> · </span>
 	<a href="#-testing">Testing</a>
+    <span> . </span>
+    <a href="#-screenshots">Screenshots</a>
 </h3>
 
 ---
@@ -180,3 +182,10 @@ It's really simple, you just have to execute this command:
 ```
 The program only accept `.fdf` files, you can use maps from the `maps/` folder,
 create your owns or even generate them with [42MapGenerator](https://github.com/jgigault/42MapGenerator).
+
+## 📷 Screenshots
+
+<img alt="T1 Map" src="https://i.gyazo.com/a0a1d3f36da4f1b51026a7acbf0adf74.gif" width="250px"/>
+<img alt="42 Map" src="https://i.gyazo.com/86b13086e7ed939d877a26dae1148ead.gif" width="300px"/>
+<img alt="T1 Map" src="https://i.gyazo.com/8e260e1ae2c4effba56b3c33ddb36e28.gif"/>
+<img alt="Earth Map" src="https://i.gyazo.com/558fe4399dcc4a2c587e60b1b992dc84.png"/>

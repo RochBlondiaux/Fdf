@@ -30,7 +30,4 @@ void	rotation_control(int keycode, t_fdf *fdf)
 		fdf->camera->z_divider += 1;
 	else if (keycode == KEY_8 && fdf->camera->z_divider > 1)
 		fdf->camera->z_divider -= 1;
-	else
-		return ;
-	render(fdf);
 }

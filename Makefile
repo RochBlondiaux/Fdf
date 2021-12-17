@@ -68,7 +68,7 @@ GLIB_LNK	= -L ./glib -l g
 
 # Flags
 CC = gcc $(CFLAGS)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -ofast
 
 all: obj $(FT_LIB) $(GLIB_LIB) $(MLX_LIB) $(NAME)
 
