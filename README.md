@@ -185,7 +185,7 @@ create your owns or even generate them with [42MapGenerator](https://github.com/
 
 ## 📷 Screenshots
 
-<img alt="T1 Map" src="https://i.gyazo.com/a0a1d3f36da4f1b51026a7acbf0adf74.gif" width="250px"/>
-<img alt="42 Map" src="https://i.gyazo.com/86b13086e7ed939d877a26dae1148ead.gif" width="300px"/>
+<img alt="T1 Map" src="t1.gif" width="250px"/>
+<img alt="42 Map" src="42.gif" width="300px"/>
 <img alt="T1 Map" src="https://i.gyazo.com/8e260e1ae2c4effba56b3c33ddb36e28.gif"/>
 <img alt="Earth Map" src="https://i.gyazo.com/558fe4399dcc4a2c587e60b1b992dc84.png"/>
